@@ -1,0 +1,142 @@
+{
+  "variables": [
+    {
+      "id": "var-xa9jmk",
+      "name": "wpfy-cream",
+      "value": "#f4efea",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-stw7dd",
+      "name": "wpfy-paper",
+      "value": "#ffffff",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-onzvzh",
+      "name": "wpfy-ink",
+      "value": "#383838",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-69j7t4",
+      "name": "wpfy-ink-soft",
+      "value": "#5c5c5c",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-4bvdda",
+      "name": "wpfy-blue",
+      "value": "#97d4ff",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-p5zsef",
+      "name": "wpfy-blue-deep",
+      "value": "#6fc2ff",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-zwlfhr",
+      "name": "wpfy-yellow",
+      "value": "#ffde00",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-t0up31",
+      "name": "wpfy-teal",
+      "value": "#53dbc9",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-hjpwsx",
+      "name": "wpfy-teal-deep",
+      "value": "#16aa98",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-o8oo51",
+      "name": "wpfy-red",
+      "value": "#f2655a",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-s2em1w",
+      "name": "wpfy-green",
+      "value": "#1fa04c",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-zzwol6",
+      "name": "wpfy-container-max",
+      "value": "1200px",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-w44ir6",
+      "name": "wpfy-section-pad",
+      "value": "96px",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-oe5ypq",
+      "name": "wpfy-section-pad-mobile",
+      "value": "72px",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-ueajlw",
+      "name": "wpfy-shadow",
+      "value": "5px 5px 0 var(--wpfy-ink)",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-jwq3x9",
+      "name": "wpfy-shadow-sm",
+      "value": "3px 3px 0 var(--wpfy-ink)",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-ti4us0",
+      "name": "wpfy-radius",
+      "value": "2px",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-ncsko8",
+      "name": "wpfy-radius-win",
+      "value": "6px",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-g7irhu",
+      "name": "wpfy-border",
+      "value": "2px solid var(--wpfy-ink)",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-ease01",
+      "name": "wpfy-ease-out",
+      "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-tfst1",
+      "name": "wpfy-t-fast",
+      "value": "0.15s",
+      "category": "cat-wpfy01"
+    },
+    {
+      "id": "var-trev1",
+      "name": "wpfy-t-reveal",
+      "value": "0.5s",
+      "category": "cat-wpfy01"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat-wpfy01",
+      "name": "WPFY"
+    }
+  ]
+}

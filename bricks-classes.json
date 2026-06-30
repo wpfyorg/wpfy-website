@@ -1,0 +1,2477 @@
+[
+  {
+    "id": "4prbti",
+    "name": "wpfy-wrap",
+    "settings": {
+      "_widthMax": "var(--wpfy-container-max)",
+      "_margin": {
+        "left": "auto",
+        "right": "auto"
+      },
+      "_padding": {
+        "left": "24px",
+        "right": "24px"
+      }
+    },
+    "category": "cat-f2kike",
+    "_categoryData": {
+      "id": "cat-f2kike",
+      "name": "WPFY Layout"
+    }
+  },
+  {
+    "id": "ho2lt9",
+    "name": "wpfy-section-pad",
+    "settings": {
+      "_padding": {
+        "top": "var(--wpfy-section-pad)",
+        "bottom": "var(--wpfy-section-pad)"
+      },
+      "_padding:mobile_landscape": {
+        "top": "var(--wpfy-section-pad-mobile)",
+        "bottom": "var(--wpfy-section-pad-mobile)"
+      }
+    },
+    "category": "cat-f2kike",
+    "_categoryData": {
+      "id": "cat-f2kike",
+      "name": "WPFY Layout"
+    }
+  },
+  {
+    "id": "kwlgfy",
+    "name": "wpfy-announce",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-yellow)"
+        }
+      },
+      "_border": {
+        "width": {
+          "bottom": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.04em",
+        "font-size": "0.75rem",
+        "text-align": "center"
+      },
+      "_padding": {
+        "top": "10px",
+        "bottom": "10px",
+        "left": "16px",
+        "right": "16px"
+      },
+      "_cssCustom": "%root% a { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; } %root% a:hover { background: var(--wpfy-ink); color: var(--wpfy-yellow); text-decoration: none; }"
+    },
+    "category": "cat-f2kike",
+    "_categoryData": {
+      "id": "cat-f2kike",
+      "name": "WPFY Layout"
+    }
+  },
+  {
+    "id": "ddl72q",
+    "name": "wpfy-site-header",
+    "settings": {
+      "_position": "sticky",
+      "_top": "0",
+      "_zIndex": "50",
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      },
+      "_border": {
+        "width": {
+          "bottom": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      }
+    },
+    "category": "cat-f2kike",
+    "_categoryData": {
+      "id": "cat-f2kike",
+      "name": "WPFY Layout"
+    }
+  },
+  {
+    "id": "nv64px",
+    "name": "wpfy-nav",
+    "settings": {
+      "_display": "flex",
+      "_alignItems": "center",
+      "_heightMin": "64px",
+      "_columnGap": "28px",
+      "_position": "relative"
+    },
+    "category": "cat-f2kike",
+    "_categoryData": {
+      "id": "cat-f2kike",
+      "name": "WPFY Layout"
+    }
+  },
+  {
+    "id": "jt3z16",
+    "name": "wpfy-site-footer",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_typography": {
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      },
+      "_padding": {
+        "top": "64px",
+        "bottom": "0"
+      }
+    },
+    "category": "cat-f2kike",
+    "_categoryData": {
+      "id": "cat-f2kike",
+      "name": "WPFY Layout"
+    }
+  },
+  {
+    "id": "ftin01",
+    "name": "wpfy-footer-inner",
+    "settings": {
+      "_widthMax": "var(--wpfy-container-max)",
+      "_margin": {
+        "left": "auto",
+        "right": "auto"
+      },
+      "_padding": {
+        "left": "24px",
+        "right": "24px"
+      }
+    },
+    "category": "cat-f2kike",
+    "_categoryData": {
+      "id": "cat-f2kike",
+      "name": "WPFY Layout"
+    }
+  },
+  {
+    "id": "ftgr01",
+    "name": "wpfy-footer-grid",
+    "settings": {
+      "_display": "grid",
+      "_gridTemplateColumns": "repeat(4, minmax(0, 1fr))",
+      "_gridGap": "32px 40px",
+      "_padding": {
+        "bottom": "48px"
+      },
+      "_gridTemplateColumns:mobile_landscape": "repeat(2, minmax(0, 1fr))",
+      "_gridTemplateColumns:mobile_portrait": "1fr"
+    },
+    "category": "cat-f2kike",
+    "_categoryData": {
+      "id": "cat-f2kike",
+      "name": "WPFY Layout"
+    }
+  },
+  {
+    "id": "ftcl01",
+    "name": "wpfy-footer-col",
+    "settings": {},
+    "category": "cat-f2kike",
+    "_categoryData": {
+      "id": "cat-f2kike",
+      "name": "WPFY Layout"
+    }
+  },
+  {
+    "id": "sbin01",
+    "name": "wpfy-sub-inner",
+    "settings": {
+      "_display": "flex",
+      "_alignItems": "center",
+      "_justifyContent": "space-between",
+      "_flexWrap": "wrap",
+      "_columnGap": "48px",
+      "_rowGap": "32px",
+      "_width": "100%"
+    },
+    "category": "cat-f2kike",
+    "_categoryData": {
+      "id": "cat-f2kike",
+      "name": "WPFY Layout"
+    }
+  },
+  {
+    "id": "2m37s0",
+    "name": "wpfy-section-sky",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-blue-deep)"
+        }
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "bottom": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_cssCustom": "%root% { --wpfy-ink-soft: var(--wpfy-ink); }"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "rcxsri",
+    "name": "wpfy-hero",
+    "settings": {
+      "_padding": {
+        "top": "88px",
+        "bottom": "72px"
+      },
+      "_typography": {
+        "text-align": "center"
+      },
+      "_position": "relative",
+      "_padding:mobile_portrait": {
+        "top": "64px"
+      },
+      "_cssCustom": "@media (max-width:680px) { %root% { text-align: left; } %root% .wpfy-hero-ctas { justify-content: flex-start; } }"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "hrcta1",
+    "name": "wpfy-hero-ctas",
+    "settings": {
+      "_display": "flex",
+      "_columnGap": "16px",
+      "_justifyContent": "center",
+      "_flexWrap": "wrap"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "j6275y",
+    "name": "wpfy-cta-band",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-yellow)"
+        }
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "bottom": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_padding": {
+        "top": "88px",
+        "bottom": "88px"
+      },
+      "_typography": {
+        "text-align": "center"
+      },
+      "_position": "relative",
+      "_padding:mobile_landscape": {
+        "top": "72px",
+        "bottom": "72px"
+      }
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "ctact1",
+    "name": "wpfy-cta-actions",
+    "settings": {
+      "_display": "flex",
+      "_columnGap": "16px",
+      "_justifyContent": "center",
+      "_flexWrap": "wrap"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "sh1k9m",
+    "name": "wpfy-section-head",
+    "settings": {
+      "_typography": {
+        "text-align": "center"
+      },
+      "_margin": {
+        "bottom": "48px"
+      },
+      "_width": "100%",
+      "_cssCustom": "%root% .wpfy-lede { margin-left: auto; margin-right: auto; margin-bottom: 0; }"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "mq001a",
+    "name": "wpfy-marquee",
+    "settings": {
+      "_border": {
+        "width": {
+          "top": "2px",
+          "bottom": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_overflow": "hidden",
+      "_padding": {
+        "top": "14px",
+        "bottom": "14px"
+      }
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "mqyel1",
+    "name": "wpfy-marquee-yellow",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-yellow)"
+        }
+      }
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "mqtel1",
+    "name": "wpfy-marquee-teal",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-teal)"
+        }
+      }
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "mqtrk1",
+    "name": "wpfy-marquee-track",
+    "settings": {
+      "_display": "flex",
+      "_columnGap": "48px",
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "font-size": "1.4rem",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.04em",
+        "white-space": "nowrap"
+      },
+      "_cssCustom": "%root% { width: max-content; animation: wpfy-marquee 45s linear infinite; } %root% span { flex: none; } @keyframes wpfy-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } } @media (max-width:768px) { %root% { font-size: 1.05rem; } } @media (prefers-reduced-motion: reduce) { %root% { animation: none; } }"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "subbd1",
+    "name": "wpfy-subscribe-band",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-blue-deep)"
+        }
+      },
+      "_border": {
+        "width": {
+          "bottom": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_padding": {
+        "top": "72px",
+        "bottom": "72px"
+      },
+      "_position": "relative",
+      "_overflow": "visible",
+      "_width": "100%"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "ecsec1",
+    "name": "wpfy-eco-section",
+    "settings": {
+      "_padding": {
+        "top": "0",
+        "bottom": "var(--wpfy-section-pad)"
+      },
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      },
+      "_cssCustom": "%root% { background-image: linear-gradient(rgba(56,56,56,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(56,56,56,0.07) 1px, transparent 1px); background-size: 56px 56px; }"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "ecsky1",
+    "name": "wpfy-eco-sky",
+    "settings": {
+      "_position": "relative",
+      "_height": "130px",
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-blue-deep)"
+        }
+      },
+      "_border": {
+        "width": {
+          "bottom": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_margin": {
+        "bottom": "56px"
+      },
+      "_height:mobile_portrait": "96px",
+      "_margin:mobile_portrait": {
+        "bottom": "40px"
+      }
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "echd01",
+    "name": "wpfy-eco-head",
+    "settings": {
+      "_typography": {
+        "text-align": "center"
+      }
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "ecdia1",
+    "name": "wpfy-eco-diagram",
+    "settings": {
+      "_display": "grid",
+      "_gridTemplateColumns": "minmax(0, 1fr) 200px minmax(0, 1fr)",
+      "_gridGap": "32px 56px",
+      "_alignItems": "center",
+      "_margin": {
+        "top": "56px"
+      },
+      "_position": "relative",
+      "_gridTemplateColumns:tablet_portrait": "1fr",
+      "_gridGap:tablet_portrait": "28px"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "eccol1",
+    "name": "wpfy-eco-col",
+    "settings": {
+      "_display": "grid",
+      "_rowGap": "28px",
+      "_position": "relative",
+      "_zIndex": "1"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "tmstg1",
+    "name": "wpfy-term-stage",
+    "settings": {
+      "_position": "relative",
+      "_widthMax": "860px",
+      "_margin": {
+        "top": "64px",
+        "left": "auto",
+        "right": "auto"
+      }
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "gr4d01",
+    "name": "wpfy-grid",
+    "settings": {
+      "_display": "grid",
+      "_gridGap": "24px",
+      "_margin": {
+        "top": "48px"
+      }
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "gr3d02",
+    "name": "wpfy-grid-3",
+    "settings": {
+      "_gridTemplateColumns": "repeat(3, 1fr)",
+      "_gridTemplateColumns:mobile_landscape": "1fr"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "gr4d03",
+    "name": "wpfy-grid-4",
+    "settings": {
+      "_gridTemplateColumns": "repeat(4, 1fr)",
+      "_gridTemplateColumns:tablet_portrait": "repeat(2, 1fr)",
+      "_gridTemplateColumns:mobile_portrait": "1fr"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "whgr01",
+    "name": "wpfy-who-grid",
+    "settings": {
+      "_gridGap:mobile_landscape": "40px"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "cm9p2x",
+    "name": "wpfy-compare",
+    "settings": {
+      "_display": "grid",
+      "_gridTemplateColumns": "1fr 1fr",
+      "_gridGap": "32px",
+      "_margin": {
+        "top": "48px"
+      },
+      "_gridTemplateColumns:mobile_landscape": "1fr"
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "ucrow1",
+    "name": "wpfy-uc-row",
+    "settings": {
+      "_display": "grid",
+      "_gridTemplateColumns": "minmax(0, 1fr) minmax(0, 1fr)",
+      "_gridGap": "48px",
+      "_alignItems": "center",
+      "_margin": {
+        "top": "64px"
+      },
+      "_gridTemplateColumns:mobile_landscape": "1fr",
+      "_gridGap:mobile_landscape": "24px",
+      "_margin:mobile_landscape": {
+        "top": "56px"
+      }
+    },
+    "category": "cat-82wfpb",
+    "_categoryData": {
+      "id": "cat-82wfpb",
+      "name": "WPFY Sections"
+    }
+  },
+  {
+    "id": "rqhdzw",
+    "name": "wpfy-btn",
+    "settings": {
+      "_display": "inline-flex",
+      "_alignItems": "center",
+      "_justifyContent": "center",
+      "_gap": "8px",
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.04em",
+        "font-size": "0.8rem",
+        "font-weight": "500"
+      },
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        },
+        "radius": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        }
+      },
+      "_padding": {
+        "top": "11px",
+        "right": "20px",
+        "bottom": "11px",
+        "left": "20px"
+      },
+      "_boxShadow": {
+        "values": {
+          "offsetX": "3",
+          "offsetY": "3",
+          "blur": "0"
+        },
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_cssCustom": "%root% { min-height: 44px; white-space: nowrap; transition: transform 0.15s cubic-bezier(0.23,1,0.32,1), box-shadow 0.15s cubic-bezier(0.23,1,0.32,1); } %root%:hover { transform: translate(-2px,-2px); box-shadow: var(--wpfy-shadow); } %root%:active { transform: translate(2px,2px); box-shadow: 0 0 0 var(--wpfy-ink); }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "zmaaq6",
+    "name": "wpfy-btn-blue",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-blue)"
+        }
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "pvk9yi",
+    "name": "wpfy-btn-ink",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.04em",
+        "font-size": "0.8rem",
+        "font-weight": "500",
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "x7dq9w",
+    "name": "wpfy-card",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-paper)"
+        }
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        },
+        "radius": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        }
+      },
+      "_padding": {
+        "top": "24px",
+        "right": "24px",
+        "bottom": "24px",
+        "left": "24px"
+      },
+      "_cssCustom": "%root% { transition: transform 0.15s cubic-bezier(0.23,1,0.32,1), box-shadow 0.15s cubic-bezier(0.23,1,0.32,1); } @media (hover:hover) and (pointer:fine) { %root%:hover { transform: translate(-2px,-2px); box-shadow: var(--wpfy-shadow); } }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "crdtp1",
+    "name": "wpfy-card-top",
+    "settings": {
+      "_display": "flex",
+      "_alignItems": "center",
+      "_columnGap": "10px"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "stpcr1",
+    "name": "wpfy-step-card",
+    "settings": {},
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "stpnm1",
+    "name": "wpfy-step-num",
+    "settings": {
+      "_display": "inline-flex",
+      "_alignItems": "center",
+      "_justifyContent": "center",
+      "_width": "34px",
+      "_height": "34px",
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "font-weight": "700",
+        "font-size": "0.95rem"
+      },
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-yellow)"
+        }
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        },
+        "radius": {
+          "top": "50%",
+          "right": "50%",
+          "bottom": "50%",
+          "left": "50%"
+        }
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "om1ed2",
+    "name": "wpfy-compare-card",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-paper)"
+        }
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        },
+        "radius": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        }
+      },
+      "_padding": {
+        "top": "28px",
+        "right": "28px",
+        "bottom": "28px",
+        "left": "28px"
+      },
+      "_boxShadow": {
+        "values": {
+          "offsetX": "5",
+          "offsetY": "5",
+          "blur": "0"
+        },
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_cssCustom": "%root% ul { list-style: none; display: grid; gap: 14px; margin: 0; padding: 0; } %root% .wpfy-tag { margin-bottom: 20px; } %root% li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; font-size: 0.95rem; color: var(--wpfy-ink-soft); } %root% li strong { color: var(--wpfy-ink); display: block; font-weight: 600; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "j5e7vr",
+    "name": "wpfy-tag",
+    "settings": {
+      "_display": "inline-flex",
+      "_alignItems": "center",
+      "_gap": "6px",
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.05em",
+        "font-size": "0.72rem",
+        "font-weight": "600"
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        },
+        "radius": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        }
+      },
+      "_padding": {
+        "top": "4px",
+        "right": "10px",
+        "bottom": "4px",
+        "left": "10px"
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "i07w6l",
+    "name": "wpfy-tag-yellow",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-yellow)"
+        }
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "exqp6o",
+    "name": "wpfy-tag-teal",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-teal)"
+        }
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "wms9b9",
+    "name": "wpfy-tag-blue",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-blue)"
+        }
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "tmnqph",
+    "name": "wpfy-tag-red",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-red)"
+        }
+      },
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.04em",
+        "font-size": "0.72rem",
+        "font-weight": "600",
+        "color": {
+          "raw": "var(--wpfy-paper)"
+        }
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "tagink",
+    "name": "wpfy-tag-ink",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_typography": {
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      },
+      "_border": {
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "341dll",
+    "name": "wpfy-code-well",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "font-size": "0.76rem",
+        "line-height": "1.85",
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      },
+      "_border": {
+        "radius": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        }
+      },
+      "_padding": {
+        "top": "14px",
+        "right": "16px",
+        "bottom": "14px",
+        "left": "16px"
+      },
+      "_margin": {
+        "top": "16px"
+      },
+      "_cssCustom": "%root% { overflow-x: auto; white-space: pre; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "ucwel1",
+    "name": "wpfy-uc-well",
+    "settings": {
+      "_margin": {
+        "top": "0"
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_boxShadow": {
+        "values": {
+          "offsetX": "5",
+          "offsetY": "5",
+          "blur": "0"
+        },
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_typography": {
+        "font-size": "0.8rem"
+      },
+      "_padding": {
+        "top": "20px",
+        "right": "22px",
+        "bottom": "20px",
+        "left": "22px"
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "whcrd1",
+    "name": "wpfy-who-card",
+    "settings": {
+      "_display": "flex",
+      "_direction": "column",
+      "_alignItems": "center",
+      "_typography": {
+        "text-align": "center"
+      },
+      "_cssCustom": "%root% .wpfy-tag { margin-bottom: 14px; } %root% p { font-size: 0.95rem; color: var(--wpfy-ink-soft); max-width: 300px; margin: 0 auto; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "whdoo1",
+    "name": "wpfy-who-doodle",
+    "settings": {
+      "_width": "34px",
+      "_margin": {
+        "bottom": "18px"
+      },
+      "_cssCustom": "%root% svg { width: 100%; height: auto; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "ecbox1",
+    "name": "wpfy-eco-box",
+    "settings": {
+      "_position": "relative",
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        },
+        "radius": {
+          "top": "6px",
+          "right": "6px",
+          "bottom": "6px",
+          "left": "6px"
+        }
+      },
+      "_padding": {
+        "top": "16px",
+        "right": "18px",
+        "bottom": "18px",
+        "left": "18px"
+      },
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-paper)"
+        }
+      },
+      "_zIndex": "1",
+      "_cssCustom": "%root% { transition: transform 0.15s cubic-bezier(0.23,1,0.32,1), box-shadow 0.15s, border-radius 0.15s; } %root% h3 { font-family: IBM Plex Mono, monospace; font-size: 0.78rem; text-align: center; margin: 0 0 12px; letter-spacing: 0.08em; text-transform: uppercase; } @media (hover:hover) and (pointer:fine) { %root%:hover { transform: translate(-2px,-2px); border-radius: 14px; box-shadow: var(--wpfy-shadow); } }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "bxblu1",
+    "name": "wpfy-box-blue",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "color-mix(in srgb, var(--wpfy-blue) 38%, var(--wpfy-paper))"
+        }
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "bxtel1",
+    "name": "wpfy-box-teal",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "color-mix(in srgb, var(--wpfy-teal) 30%, var(--wpfy-paper))"
+        }
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "bxyel1",
+    "name": "wpfy-box-yellow",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "color-mix(in srgb, var(--wpfy-yellow) 28%, var(--wpfy-paper))"
+        }
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "bxred1",
+    "name": "wpfy-box-red",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "color-mix(in srgb, var(--wpfy-red) 18%, var(--wpfy-paper))"
+        }
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "bxcrm1",
+    "name": "wpfy-box-cream",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "ecitm1",
+    "name": "wpfy-eco-item",
+    "settings": {
+      "_display": "inline-flex",
+      "_alignItems": "center",
+      "_gap": "7px",
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "font-size": "0.7rem",
+        "font-weight": "600",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.02em"
+      },
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-paper)"
+        }
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_padding": {
+        "top": "6px",
+        "right": "10px",
+        "bottom": "6px",
+        "left": "10px"
+      },
+      "_cssCustom": "%root% img, %root% svg { width: 18px; height: 18px; flex: none; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "eccen1",
+    "name": "wpfy-eco-center",
+    "settings": {
+      "_display": "flex",
+      "_direction": "column",
+      "_alignItems": "center",
+      "_rowGap": "14px",
+      "_typography": {
+        "text-align": "center"
+      },
+      "_position": "relative",
+      "_zIndex": "1",
+      "_order:tablet_portrait": "-1"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "eclbl1",
+    "name": "wpfy-eco-center-label",
+    "settings": {
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.08em",
+        "font-size": "0.72rem"
+      },
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      },
+      "_padding": {
+        "top": "2px",
+        "bottom": "2px",
+        "left": "8px",
+        "right": "8px"
+      },
+      "_position": "relative"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "ecsub1",
+    "name": "wpfy-eco-center-sub",
+    "settings": {
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.08em",
+        "font-size": "0.72rem",
+        "color": {
+          "raw": "var(--wpfy-ink-soft)"
+        }
+      },
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      },
+      "_padding": {
+        "top": "2px",
+        "bottom": "2px",
+        "left": "8px",
+        "right": "8px"
+      },
+      "_position": "relative"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "ecnod1",
+    "name": "wpfy-eco-node",
+    "settings": {
+      "_position": "relative",
+      "_widthMax": "200px",
+      "_width": "100%",
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-paper)"
+        }
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        },
+        "radius": {
+          "top": "14px",
+          "right": "14px",
+          "bottom": "14px",
+          "left": "14px"
+        }
+      },
+      "_boxShadow": {
+        "values": {
+          "offsetX": "5",
+          "offsetY": "5",
+          "blur": "0"
+        },
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_overflow": "hidden"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "ecnbr1",
+    "name": "wpfy-eco-node-bar",
+    "settings": {
+      "_display": "flex",
+      "_columnGap": "7px",
+      "_alignItems": "center",
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_padding": {
+        "top": "9px",
+        "right": "12px",
+        "bottom": "9px",
+        "left": "12px"
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "ecnby1",
+    "name": "wpfy-eco-node-body",
+    "settings": {
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "font-weight": "700",
+        "font-size": "1.3rem"
+      },
+      "_padding": {
+        "top": "26px",
+        "right": "16px",
+        "bottom": "26px",
+        "left": "16px"
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "term01",
+    "name": "wpfy-terminal",
+    "settings": {
+      "_position": "relative",
+      "_widthMax": "860px",
+      "_width": "100%",
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-paper)"
+        }
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        },
+        "radius": {
+          "top": "6px",
+          "right": "6px",
+          "bottom": "6px",
+          "left": "6px"
+        }
+      },
+      "_boxShadow": {
+        "values": {
+          "offsetX": "5",
+          "offsetY": "5",
+          "blur": "0"
+        },
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_overflow": "hidden",
+      "_typography": {
+        "text-align": "left"
+      },
+      "_zIndex": "1"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "trmbar",
+    "name": "wpfy-term-bar",
+    "settings": {
+      "_display": "flex",
+      "_alignItems": "center",
+      "_columnGap": "8px",
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_typography": {
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      },
+      "_padding": {
+        "top": "10px",
+        "right": "14px",
+        "bottom": "10px",
+        "left": "14px"
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "trmdot",
+    "name": "wpfy-term-dot",
+    "settings": {
+      "_width": "11px",
+      "_height": "11px",
+      "_border": {
+        "radius": {
+          "top": "50%",
+          "right": "50%",
+          "bottom": "50%",
+          "left": "50%"
+        },
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      },
+      "_cssCustom": "%root%.d1 { background: var(--wpfy-red); } %root%.d2 { background: var(--wpfy-yellow); } %root%.d3 { background: var(--wpfy-teal); }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "trmtit",
+    "name": "wpfy-term-title",
+    "settings": {
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "font-size": "0.72rem",
+        "letter-spacing": "0.04em"
+      },
+      "_margin": {
+        "left": "8px"
+      },
+      "_opacity": "0.85"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "cpybtn",
+    "name": "wpfy-copy-btn",
+    "settings": {
+      "_display": "inline-flex",
+      "_alignItems": "center",
+      "_gap": "6px",
+      "_margin": {
+        "left": "auto"
+      },
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.04em",
+        "font-size": "0.68rem"
+      },
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        },
+        "radius": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        }
+      },
+      "_padding": {
+        "top": "4px",
+        "right": "10px",
+        "bottom": "4px",
+        "left": "10px"
+      },
+      "_cssCustom": "%root% { cursor: pointer; transition: background-color 0.15s, transform 0.15s; } %root%:hover { background: var(--wpfy-yellow); border-color: var(--wpfy-yellow); } %root%:active { transform: scale(0.96); } %root% svg { width: 12px; height: 12px; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "trmbdy",
+    "name": "wpfy-term-body",
+    "settings": {
+      "_padding": {
+        "top": "20px",
+        "right": "24px",
+        "bottom": "24px",
+        "left": "24px"
+      },
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "font-size": "0.82rem",
+        "line-height": "1.9"
+      },
+      "_height": "calc(7 * 1.9em + 44px)",
+      "_overflow": "hidden auto",
+      "_cssCustom": "%root% { overflow-x: auto; overflow-y: hidden; white-space: pre; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "bubbl1",
+    "name": "wpfy-bubble",
+    "settings": {
+      "_position": "absolute",
+      "_top": "-44px",
+      "_right": "18px",
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-paper)"
+        }
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        },
+        "radius": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        }
+      },
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.04em",
+        "font-size": "0.68rem"
+      },
+      "_padding": {
+        "top": "8px",
+        "right": "12px",
+        "bottom": "8px",
+        "left": "12px"
+      },
+      "_boxShadow": {
+        "values": {
+          "offsetX": "3",
+          "offsetY": "3",
+          "blur": "0"
+        },
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_zIndex": "2",
+      "_cssCustom": "%root%::after { content: ''; position: absolute; bottom: -10px; left: 26px; width: 12px; height: 12px; background: var(--wpfy-paper); border-right: var(--wpfy-border); border-bottom: var(--wpfy-border); transform: rotate(45deg); }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "doodl1",
+    "name": "wpfy-doodle",
+    "settings": {
+      "_position": "absolute",
+      "_pointerEvents": "none",
+      "_cssCustom": "%root% svg { width: 100%; height: auto; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "edgd01",
+    "name": "wpfy-edge-doodle",
+    "settings": {
+      "_position": "absolute",
+      "_top": "-26px",
+      "_zIndex": "2",
+      "_pointerEvents": "none",
+      "_cssCustom": "%root% svg, %root% img { width: 100%; height: auto; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "edgdb1",
+    "name": "wpfy-edge-doodle-b",
+    "settings": {
+      "_top": "auto",
+      "_bottom": "-26px"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "drift1",
+    "name": "wpfy-drift",
+    "settings": {
+      "_position": "absolute",
+      "_pointerEvents": "none",
+      "_zIndex": "0",
+      "_cssCustom": "%root% { animation: wpfy-drift-y 14s ease-in-out infinite alternate; } %root% svg, %root% img { width: 100%; height: auto; } %root%.d-icon { opacity: 0.16; } %root%.d-cloud, %root%.d-lock { opacity: 0.85; } @keyframes wpfy-drift-y { from { transform: translateY(14px); } to { transform: translateY(-14px); } } @supports (animation-timeline: view()) { %root% { animation: wpfy-drift-scroll linear both; animation-timeline: view(); } @keyframes wpfy-drift-scroll { from { transform: translateY(70px); } to { transform: translateY(-70px); } } } @media (prefers-reduced-motion: reduce) { %root% { animation: none; } }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "ctcld1",
+    "name": "wpfy-cta-cloud",
+    "settings": {
+      "_position": "absolute",
+      "_top": "-26px",
+      "_zIndex": "2",
+      "_pointerEvents": "none",
+      "_cssCustom": "%root% svg { width: 100%; height: auto; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "cmdch1",
+    "name": "wpfy-cmd-chip",
+    "settings": {
+      "_display": "inline-flex",
+      "_alignItems": "center",
+      "_gap": "8px",
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "font-size": "0.72rem",
+        "color": {
+          "raw": "var(--wpfy-cream)"
+        }
+      },
+      "_border": {
+        "radius": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        }
+      },
+      "_padding": {
+        "top": "5px",
+        "right": "10px",
+        "bottom": "5px",
+        "left": "10px"
+      },
+      "_margin": {
+        "top": "14px"
+      },
+      "_cssCustom": "%root% { cursor: pointer; border: 0; transition: transform 0.15s, background-color 0.15s; } %root%:hover { background: #2b2b2b; } %root%:active { transform: scale(0.97); } %root%.copied { background: #2b2b2b; } %root% .wpfy-cmd-chip-ico { width: 12px; height: 12px; flex: none; opacity: 0.5; } %root%:hover .wpfy-cmd-chip-ico { opacity: 0.85; } %root%.copied .wpfy-cmd-chip-ico { opacity: 1; color: var(--wpfy-teal); } %root% .ico-check { display: none; } %root%.copied .ico-copy { display: none; } %root%.copied .ico-check { display: block; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "navln1",
+    "name": "wpfy-nav-links",
+    "settings": {
+      "_display": "flex",
+      "_alignItems": "center",
+      "_columnGap": "24px",
+      "_margin": {
+        "right": "auto"
+      },
+      "_cssCustom": "%root% { list-style: none; margin: 0; padding: 0; flex-wrap: wrap; } %root% li { list-style: none; } %root% a { font-family: IBM Plex Mono, monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 6px 2px; border-bottom: 2px solid transparent; text-decoration: none; color: inherit; transition: border-color 0.15s cubic-bezier(0.23,1,0.32,1); } %root% a:hover { border-bottom-color: var(--wpfy-ink); } %root% a:active { background: var(--wpfy-yellow); }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "menub1",
+    "name": "wpfy-menu-btn",
+    "settings": {
+      "_display": "none",
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        },
+        "radius": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        }
+      },
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-paper)"
+        }
+      },
+      "_padding": "9px",
+      "_margin": {
+        "left": "auto"
+      },
+      "_cssCustom": "%root% svg { width: 16px; height: 16px; } @media (max-width:768px) { %root% { display: inline-flex; margin-left: auto; } }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "ftctt1",
+    "name": "wpfy-footer-col-title",
+    "settings": {
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.08em",
+        "font-size": "0.72rem",
+        "font-weight": "600"
+      },
+      "_margin": {
+        "bottom": "14px"
+      },
+      "_opacity": "0.9"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "ftlnk1",
+    "name": "wpfy-footer-links",
+    "settings": {
+      "_cssCustom": "%root% { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; } %root% a { font-family: IBM Plex Mono, monospace; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 2px solid transparent; text-decoration: none; color: inherit; } %root% a:hover { border-bottom-color: var(--wpfy-cream); }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "ftmet1",
+    "name": "wpfy-footer-meta",
+    "settings": {
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.04em",
+        "font-size": "0.72rem",
+        "line-height": "2"
+      },
+      "_margin": {
+        "top": "14px"
+      },
+      "_opacity": "0.75"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "ftbar1",
+    "name": "wpfy-footer-bar",
+    "settings": {
+      "_border": {
+        "width": {
+          "top": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "rgba(244, 239, 234, 0.2)"
+        }
+      },
+      "_padding": {
+        "top": "16px",
+        "bottom": "20px"
+      },
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.04em",
+        "font-size": "0.68rem",
+        "line-height": "1.8",
+        "text-align": "center"
+      },
+      "_opacity": "0.8",
+      "_cssCustom": "%root% a { color: inherit; text-decoration: none; border-bottom: 2px solid var(--wpfy-teal); text-underline-offset: 3px; } %root% a:hover { color: var(--wpfy-teal); border-bottom-color: var(--wpfy-yellow); }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "subcp1",
+    "name": "wpfy-sub-copy",
+    "settings": {
+      "_widthMax": "460px",
+      "_cssCustom": "%root% { flex: 1 1 300px; max-width: 460px; } %root% h2 { font-family: IBM Plex Mono, monospace; font-size: clamp(1.4rem, 1rem + 1.6vw, 1.9rem); text-transform: uppercase; margin-bottom: 10px; } %root% p { max-width: 460px; margin: 0; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "subfm1",
+    "name": "wpfy-sub-form",
+    "settings": {
+      "_display": "flex",
+      "_columnGap": "12px",
+      "_flexWrap": "wrap",
+      "_cssCustom": "%root% { flex: 0 1 auto; min-width: min(100%, 390px); } %root% input[type=email] { font-family: IBM Plex Mono, monospace; font-size: 0.85rem; line-height: normal; color: var(--wpfy-ink); background: var(--wpfy-paper); border: var(--wpfy-border); border-radius: var(--wpfy-radius); box-shadow: var(--wpfy-shadow-sm); padding: 11px 16px; min-height: 44px; height: 44px; min-width: 260px; flex: 1 1 auto; } %root% input[type=email]::placeholder { color: var(--wpfy-ink-soft); } %root% input[type=email]:focus-visible { outline: 3px solid var(--wpfy-yellow); outline-offset: 2px; } %root% .wpfy-sub-fields { display: flex; gap: 12px; flex-wrap: wrap; align-items: stretch; width: 100%; } %root% .wpfy-btn { background: var(--wpfy-yellow); color: var(--wpfy-ink); flex: 0 0 auto; } %root% .wpfy-btn:hover { background: var(--wpfy-yellow); } %root% .wpfy-sub-privacy { font-size: 0.78rem; color: var(--wpfy-ink-soft); margin-top: 10px; max-width: 420px; flex: 1 1 100%; } %root% .wpfy-sub-privacy label { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; } %root% .wpfy-sub-privacy input[type=checkbox] { width: 16px; height: 16px; min-width: 16px; min-height: 16px; margin-top: 2px; padding: 0; border: 2px solid var(--wpfy-ink); box-shadow: none; flex: none; accent-color: var(--wpfy-yellow); } @media (max-width:680px) { %root% { width: 100%; } %root% input[type=email] { min-width: 0; width: 100%; } %root% .wpfy-btn { flex: 1 1 auto; } }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "subst1",
+    "name": "wpfy-sub-status",
+    "settings": {
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.04em",
+        "font-size": "0.85rem",
+        "font-weight": "600"
+      },
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-paper)"
+        }
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        },
+        "radius": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        }
+      },
+      "_boxShadow": {
+        "values": {
+          "offsetX": "3",
+          "offsetY": "3",
+          "blur": "0"
+        },
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_padding": {
+        "top": "12px",
+        "right": "18px",
+        "bottom": "12px",
+        "left": "18px"
+      }
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "uccpy1",
+    "name": "wpfy-uc-copy",
+    "settings": {
+      "_rowGap": "16px",
+      "_cssCustom": "%root% h3 { font-family: IBM Plex Mono, monospace; font-size: 1.25rem; text-transform: uppercase; margin-bottom: 14px; } %root% p { color: var(--wpfy-ink-soft); max-width: 440px; margin-bottom: 24px; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "affbn1",
+    "name": "wpfy-affiliate-banner",
+    "settings": {
+      "_background": {
+        "color": {
+          "raw": "var(--wpfy-yellow)"
+        }
+      },
+      "_border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_padding": {
+        "top": "14px",
+        "right": "18px",
+        "bottom": "14px",
+        "left": "18px"
+      },
+      "_margin": {
+        "bottom": "28px"
+      },
+      "_boxShadow": {
+        "values": {
+          "offsetX": "3",
+          "offsetY": "3",
+          "blur": "0"
+        },
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "_typography": {
+        "font-size": "0.92rem"
+      },
+      "_cssCustom": "%root% p { margin: 0; max-width: none; } %root% a { font-weight: 600; }"
+    },
+    "category": "cat-h2505r",
+    "_categoryData": {
+      "id": "cat-h2505r",
+      "name": "WPFY Components"
+    }
+  },
+  {
+    "id": "vdu3ou",
+    "name": "wpfy-lede",
+    "settings": {
+      "_typography": {
+        "font-size": "1.05rem",
+        "color": {
+          "raw": "var(--wpfy-ink-soft)"
+        },
+        "line-height": "1.6",
+        "text-align": "center"
+      },
+      "_widthMax": "640px",
+      "_margin": {
+        "left": "auto",
+        "right": "auto"
+      }
+    },
+    "category": "cat-xui2px",
+    "_categoryData": {
+      "id": "cat-xui2px",
+      "name": "WPFY Typography"
+    }
+  },
+  {
+    "id": "8fd8sm",
+    "name": "wpfy-heading-mono",
+    "settings": {
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "font-weight": "500",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.02em",
+        "line-height": "1.15"
+      },
+      "_cssCustom": "%root% { font-size: clamp(1.5rem, 1rem + 2.4vw, 2.4rem); } .wpfy-section-head %root% { margin-bottom: 14px; } .wpfy-eco-head %root% { font-size: clamp(1.9rem, 1rem + 3.4vw, 3rem); letter-spacing: 0.06em; }"
+    },
+    "category": "cat-xui2px",
+    "_categoryData": {
+      "id": "cat-xui2px",
+      "name": "WPFY Typography"
+    }
+  },
+  {
+    "id": "nh1um4",
+    "name": "wpfy-logo",
+    "settings": {
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "font-size": "1.25rem",
+        "font-weight": "700",
+        "letter-spacing": "-0.01em"
+      },
+      "_cssCustom": "%root% .mark, %root% span { color: var(--wpfy-teal-deep); } .wpfy-site-footer %root% .mark, .wpfy-site-footer %root% span { color: var(--wpfy-teal); }"
+    },
+    "category": "cat-xui2px",
+    "_categoryData": {
+      "id": "cat-xui2px",
+      "name": "WPFY Typography"
+    }
+  },
+  {
+    "id": "ecsub2",
+    "name": "wpfy-eco-sub",
+    "settings": {
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.14em",
+        "font-size": "1rem",
+        "text-align": "center"
+      },
+      "_margin": {
+        "top": "6px"
+      }
+    },
+    "category": "cat-xui2px",
+    "_categoryData": {
+      "id": "cat-xui2px",
+      "name": "WPFY Typography"
+    }
+  },
+  {
+    "id": "lix001",
+    "name": "wpfy-li-x",
+    "settings": {
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "font-weight": "700",
+        "color": {
+          "raw": "var(--wpfy-red)"
+        }
+      }
+    },
+    "category": "cat-xui2px",
+    "_categoryData": {
+      "id": "cat-xui2px",
+      "name": "WPFY Typography"
+    }
+  },
+  {
+    "id": "lichk1",
+    "name": "wpfy-li-check",
+    "settings": {
+      "_typography": {
+        "font-family": "IBM Plex Mono",
+        "font-weight": "700",
+        "color": {
+          "raw": "var(--wpfy-green)"
+        }
+      }
+    },
+    "category": "cat-xui2px",
+    "_categoryData": {
+      "id": "cat-xui2px",
+      "name": "WPFY Typography"
+    }
+  },
+  {
+    "id": "tprom1",
+    "name": "wpfy-t-prompt",
+    "settings": {
+      "_typography": {
+        "color": {
+          "raw": "var(--wpfy-teal-deep)"
+        },
+        "font-weight": "600"
+      },
+      "_cssCustom": ".wpfy-code-well %root% { color: var(--wpfy-teal); }"
+    },
+    "category": "cat-xui2px",
+    "_categoryData": {
+      "id": "cat-xui2px",
+      "name": "WPFY Typography"
+    }
+  },
+  {
+    "id": "tcmd01",
+    "name": "wpfy-t-cmd",
+    "settings": {
+      "_typography": {
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        },
+        "font-weight": "600"
+      }
+    },
+    "category": "cat-xui2px",
+    "_categoryData": {
+      "id": "cat-xui2px",
+      "name": "WPFY Typography"
+    }
+  },
+  {
+    "id": "tout01",
+    "name": "wpfy-t-out",
+    "settings": {
+      "_typography": {
+        "color": {
+          "raw": "var(--wpfy-ink-soft)"
+        }
+      },
+      "_cssCustom": ".wpfy-code-well %root% { color: #a8a8a8; }"
+    },
+    "category": "cat-xui2px",
+    "_categoryData": {
+      "id": "cat-xui2px",
+      "name": "WPFY Typography"
+    }
+  },
+  {
+    "id": "took01",
+    "name": "wpfy-t-ok",
+    "settings": {
+      "_typography": {
+        "color": {
+          "raw": "var(--wpfy-green)"
+        },
+        "font-weight": "600"
+      }
+    },
+    "category": "cat-xui2px",
+    "_categoryData": {
+      "id": "cat-xui2px",
+      "name": "WPFY Typography"
+    }
+  },
+  {
+    "id": "tdim01",
+    "name": "wpfy-t-dim",
+    "settings": {
+      "_typography": {
+        "color": {
+          "raw": "var(--wpfy-teal-deep)"
+        }
+      }
+    },
+    "category": "cat-xui2px",
+    "_categoryData": {
+      "id": "cat-xui2px",
+      "name": "WPFY Typography"
+    }
+  },
+  {
+    "id": "sronly",
+    "name": "wpfy-sr-only",
+    "settings": {
+      "_position": "absolute",
+      "_width": "1px",
+      "_height": "1px",
+      "_overflow": "hidden",
+      "_cssCustom": "%root% { clip: rect(0 0 0 0); white-space: nowrap; }"
+    },
+    "category": "cat-xui2px",
+    "_categoryData": {
+      "id": "cat-xui2px",
+      "name": "WPFY Typography"
+    }
+  },
+  {
+    "id": "reveal",
+    "name": "wpfy-reveal",
+    "settings": {
+      "_cssCustom": "%root% { opacity: 1; transform: none; } .js %root% { opacity: 0; transform: translateY(14px); transition: opacity 0.5s cubic-bezier(0.23,1,0.32,1), transform 0.5s cubic-bezier(0.23,1,0.32,1); transition-delay: calc(var(--d, 0) * 70ms); } .js %root%.in { opacity: 1; transform: translateY(0); } @media (prefers-reduced-motion: reduce) { .js %root% { opacity: 1; transform: none; } }"
+    },
+    "category": "cat-xui2px",
+    "_categoryData": {
+      "id": "cat-xui2px",
+      "name": "WPFY Typography"
+    }
+  }
+]

@@ -1,0 +1,362 @@
+{
+  "variables": [
+    {
+      "id": "at_min-viewport",
+      "name": "min-viewport",
+      "value": "360",
+      "category": "at_clamp-settings"
+    },
+    {
+      "id": "at_max-viewport",
+      "name": "max-viewport",
+      "value": "1600",
+      "category": "at_clamp-settings"
+    },
+    {
+      "id": "at_base-font",
+      "name": "base-font",
+      "value": "10",
+      "category": "at_clamp-settings"
+    },
+    {
+      "id": "at_clamp-unit",
+      "name": "clamp-unit",
+      "value": "1vw",
+      "category": "at_clamp-settings"
+    },
+    {
+      "id": "var-xa9jmk",
+      "name": "wpfy-cream",
+      "value": "#f4efea",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-stw7dd",
+      "name": "wpfy-paper",
+      "value": "#ffffff",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-onzvzh",
+      "name": "wpfy-ink",
+      "value": "#383838",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-69j7t4",
+      "name": "wpfy-ink-soft",
+      "value": "#5c5c5c",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-4bvdda",
+      "name": "wpfy-blue",
+      "value": "#97d4ff",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-p5zsef",
+      "name": "wpfy-blue-deep",
+      "value": "#6fc2ff",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-zwlfhr",
+      "name": "wpfy-yellow",
+      "value": "#ffde00",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-t0up31",
+      "name": "wpfy-teal",
+      "value": "#53dbc9",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-hjpwsx",
+      "name": "wpfy-teal-deep",
+      "value": "#16aa98",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-o8oo51",
+      "name": "wpfy-red",
+      "value": "#f2655a",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-s2em1w",
+      "name": "wpfy-green",
+      "value": "#1fa04c",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-zzwol6",
+      "name": "wpfy-container-max",
+      "value": "1200px",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-w44ir6",
+      "name": "wpfy-section-pad",
+      "value": "96px",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-oe5ypq",
+      "name": "wpfy-section-pad-mobile",
+      "value": "72px",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-ueajlw",
+      "name": "wpfy-shadow",
+      "value": "5px 5px 0 var(--wpfy-ink)",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-jwq3x9",
+      "name": "wpfy-shadow-sm",
+      "value": "3px 3px 0 var(--wpfy-ink)",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-ti4us0",
+      "name": "wpfy-radius",
+      "value": "2px",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-ncsko8",
+      "name": "wpfy-radius-win",
+      "value": "6px",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-g7irhu",
+      "name": "wpfy-border",
+      "value": "2px solid var(--wpfy-ink)",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-ease01",
+      "name": "wpfy-ease-out",
+      "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-tfst1",
+      "name": "wpfy-t-fast",
+      "value": "0.15s",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "var-trev1",
+      "name": "wpfy-t-reveal",
+      "value": "0.5s",
+      "category": "cat-hn9uq1"
+    },
+    {
+      "id": "hlmihg",
+      "name": "text-2xs",
+      "value": "clamp(0.82rem, calc(0.00018518518518518534 * (100vw - 36rem) + 0.82rem), 0.84rem)",
+      "category": "wtmqyr",
+      "scale": {
+        "scale": -3,
+        "scaleName": "2xs"
+      }
+    },
+    {
+      "id": "nkuzst",
+      "name": "text-xs",
+      "value": "clamp(1.02rem, calc(0.0010185185185185173 * (100vw - 36rem) + 1.02rem), 1.13rem)",
+      "category": "wtmqyr",
+      "scale": {
+        "scale": -2,
+        "scaleName": "xs"
+      }
+    },
+    {
+      "id": "eizphg",
+      "name": "text-s",
+      "value": "clamp(1.28rem, calc(0.002037037037037037 * (100vw - 36rem) + 1.28rem), 1.5rem)",
+      "category": "wtmqyr",
+      "scale": {
+        "scale": -1,
+        "scaleName": "s"
+      }
+    },
+    {
+      "id": "jzswrq",
+      "name": "text-m",
+      "value": "clamp(1.6rem, calc(0.003703703703703703 * (100vw - 36rem) + 1.6rem), 2rem)",
+      "category": "wtmqyr",
+      "scale": {
+        "scale": 0,
+        "scaleName": "m"
+      }
+    },
+    {
+      "id": "parhpu",
+      "name": "text-l",
+      "value": "clamp(2rem, calc(0.0062037037037037035 * (100vw - 36rem) + 2rem), 2.67rem)",
+      "category": "wtmqyr",
+      "scale": {
+        "scale": 1,
+        "scaleName": "l"
+      }
+    },
+    {
+      "id": "lrhikt",
+      "name": "text-xl",
+      "value": "clamp(2.5rem, calc(0.00972222222222222 * (100vw - 36rem) + 2.5rem), 3.55rem)",
+      "category": "wtmqyr",
+      "scale": {
+        "scale": 2,
+        "scaleName": "xl"
+      }
+    },
+    {
+      "id": "oundxc",
+      "name": "text-2xl",
+      "value": "clamp(3.13rem, calc(0.014907407407407411 * (100vw - 36rem) + 3.13rem), 4.74rem)",
+      "category": "wtmqyr",
+      "scale": {
+        "scale": 3,
+        "scaleName": "2xl"
+      }
+    },
+    {
+      "id": "xpqkis",
+      "name": "space-2xs",
+      "value": "clamp(0.82rem, calc(0.00018518518518518534 * (100vw - 36rem) + 0.82rem), 0.84rem)",
+      "category": "ysokme",
+      "scale": {
+        "scale": -3,
+        "scaleName": "2xs"
+      }
+    },
+    {
+      "id": "udcwsc",
+      "name": "space-xs",
+      "value": "clamp(1.02rem, calc(0.0010185185185185173 * (100vw - 36rem) + 1.02rem), 1.13rem)",
+      "category": "ysokme",
+      "scale": {
+        "scale": -2,
+        "scaleName": "xs"
+      }
+    },
+    {
+      "id": "tpnfmd",
+      "name": "space-s",
+      "value": "clamp(1.28rem, calc(0.002037037037037037 * (100vw - 36rem) + 1.28rem), 1.5rem)",
+      "category": "ysokme",
+      "scale": {
+        "scale": -1,
+        "scaleName": "s"
+      }
+    },
+    {
+      "id": "ejwluw",
+      "name": "space-m",
+      "value": "clamp(1.6rem, calc(0.003703703703703703 * (100vw - 36rem) + 1.6rem), 2rem)",
+      "category": "ysokme",
+      "scale": {
+        "scale": 0,
+        "scaleName": "m"
+      }
+    },
+    {
+      "id": "qtgoeg",
+      "name": "space-l",
+      "value": "clamp(2rem, calc(0.0062037037037037035 * (100vw - 36rem) + 2rem), 2.67rem)",
+      "category": "ysokme",
+      "scale": {
+        "scale": 1,
+        "scaleName": "l"
+      }
+    },
+    {
+      "id": "wxpwhr",
+      "name": "space-xl",
+      "value": "clamp(2.5rem, calc(0.00972222222222222 * (100vw - 36rem) + 2.5rem), 3.55rem)",
+      "category": "ysokme",
+      "scale": {
+        "scale": 2,
+        "scaleName": "xl"
+      }
+    },
+    {
+      "id": "vwryzw",
+      "name": "space-2xl",
+      "value": "clamp(3.13rem, calc(0.014907407407407411 * (100vw - 36rem) + 3.13rem), 4.74rem)",
+      "category": "ysokme",
+      "scale": {
+        "scale": 3,
+        "scaleName": "2xl"
+      }
+    }
+  ],
+  "categories": [
+    {
+      "id": "at_clamp-settings",
+      "name": "AT - Clamp Settings"
+    },
+    {
+      "id": "cat-hn9uq1",
+      "name": "WPFY"
+    },
+    {
+      "id": "wtmqyr",
+      "name": "Typography",
+      "scale": {
+        "scaleScope": "typography",
+        "scaleType": "tshirt",
+        "scaleNames": [
+          "2xs",
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl",
+          "2xl"
+        ],
+        "prefix": "text-",
+        "minFontSize": 16,
+        "minScaleRatio": 1.25,
+        "minScaleRatioSelect": 1.25,
+        "maxFontSize": 20,
+        "maxScaleRatio": 1.333,
+        "maxScaleRatioSelect": 1.333,
+        "baseline": "m"
+      },
+      "utilityClasses": []
+    },
+    {
+      "id": "ysokme",
+      "name": "Spacing",
+      "scale": {
+        "scaleScope": "spacing",
+        "scaleType": "tshirt",
+        "scaleNames": [
+          "2xs",
+          "xs",
+          "s",
+          "m",
+          "l",
+          "xl",
+          "2xl"
+        ],
+        "prefix": "space-",
+        "minFontSize": 16,
+        "minScaleRatio": 1.25,
+        "minScaleRatioSelect": 1.25,
+        "maxFontSize": 20,
+        "maxScaleRatio": 1.333,
+        "maxScaleRatioSelect": 1.333,
+        "baseline": "m"
+      },
+      "utilityClasses": []
+    }
+  ]
+}

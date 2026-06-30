@@ -1,0 +1,90 @@
+{
+  "label": "WPFY Main",
+  "settings": {
+    "general": {
+      "containerWidth": "1200px",
+      "sectionVerticalPadding": "96px"
+    },
+    "colors": {
+      "primary": {
+        "raw": "var(--wpfy-blue-deep)"
+      },
+      "secondary": {
+        "raw": "var(--wpfy-ink)"
+      },
+      "light": {
+        "raw": "var(--wpfy-cream)"
+      },
+      "dark": {
+        "raw": "var(--wpfy-ink)"
+      }
+    },
+    "typography": {
+      "fontFamily": "Inter",
+      "bodyTypography": {
+        "font-size": "16px",
+        "line-height": "1.6",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        }
+      },
+      "h1Typography": {
+        "font-family": "IBM Plex Mono",
+        "font-size": "clamp(2rem, 1rem + 4.6vw, 3.6rem)",
+        "font-weight": "500",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.02em",
+        "line-height": "1.15"
+      },
+      "h2Typography": {
+        "font-family": "IBM Plex Mono",
+        "font-size": "clamp(1.5rem, 1rem + 2.4vw, 2.4rem)",
+        "font-weight": "500",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.02em",
+        "line-height": "1.15"
+      },
+      "h3Typography": {
+        "font-family": "IBM Plex Mono",
+        "font-size": "0.92rem",
+        "font-weight": "500",
+        "text-transform": "uppercase",
+        "letter-spacing": "0.02em"
+      },
+      "linkColor": {
+        "raw": "var(--wpfy-ink)"
+      }
+    },
+    "button": {
+      "backgroundColor": {
+        "raw": "var(--wpfy-cream)"
+      },
+      "border": {
+        "width": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        },
+        "style": "solid",
+        "color": {
+          "raw": "var(--wpfy-ink)"
+        },
+        "radius": {
+          "top": "2px",
+          "right": "2px",
+          "bottom": "2px",
+          "left": "2px"
+        }
+      }
+    },
+    "conditions": {
+      "conditions": [
+        {
+          "main": "any"
+        }
+      ]
+    }
+  },
+  "id": "ts-9cwp30"
+}
