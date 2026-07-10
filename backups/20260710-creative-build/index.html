@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WPFY · Docker-first WordPress infrastructure CLI for Ubuntu VPS</title>
+<meta name="description" content="WPFY is open-source, beta-stage CLI software for installing and operating isolated WordPress stacks on Ubuntu VPS servers. Per-site Docker Compose, Traefik edge proxy, SSL preflight, backups, restore, and diagnostics.">
+<link rel="canonical" href="https://wpfy.org/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wpfy.org/">
+<meta property="og:title" content="WPFY · Docker-first WordPress infrastructure CLI">
+<meta property="og:description" content="Operate WordPress infrastructure from one CLI. Isolated Compose stacks, Traefik edge routing, SSL preflight, backups, and diagnostics on Ubuntu VPS.">
+<meta property="og:site_name" content="WPFY">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WPFY · Docker-first WordPress infrastructure CLI">
+<meta name="twitter:description" content="Operate WordPress infrastructure from one CLI. Beta software — test on a disposable Ubuntu VPS first.">
+<link rel="icon" href="assets/icons/docker.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=9">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "WPFY",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Ubuntu",
+  "description": "Docker-first WordPress VPS installer and server-management CLI with per-site Compose isolation, Traefik edge proxy, SSL preflight, backups, and diagnostics.",
+  "url": "https://wpfy.org/",
+  "downloadUrl": "https://github.com/wpfyorg/wpfy",
+  "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+  "softwareVersion": "1.0.0-rc1",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+</head>
+<body>
+
+<div class="announce">
+  WPFY is currently beta/RC software. Test it on a fresh or disposable Ubuntu VPS first.
+  <a href="https://docs.wpfy.org/releases/v1.0.0-rc1">Read the release notes</a>
+</div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="WPFY home">wpfy<span class="mark">_</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#why-docker">Product</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#commands">Commands</a></li>
+      <li><a href="https://docs.wpfy.org">Docs</a></li>
+      <li><a href="https://forum.wpfy.org">Forum</a></li>
+      <li><a href="https://github.com/wpfyorg/wpfy">GitHub</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="btn btn-primary" href="https://docs.wpfy.org/runbooks/fresh-install">Install WPFY</a>
+    </div>
+    <button type="button" class="menu-btn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 4.5h12M2 8h12M2 11.5h12"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero section-pad-sm" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Docker-first WordPress infrastructure</p>
+      <h1 id="hero-title" class="reveal" style="--d:1">Operate WordPress infrastructure from one CLI.</h1>
+      <p class="hero-lede reveal" style="--d:2">WPFY turns a fresh Ubuntu VPS into an isolated, Docker-backed WordPress host. Provision sites, manage SSL, run backups, restore safely, inspect health, and operate every site from a consistent command surface.</p>
+      <div class="hero-ctas reveal" style="--d:3">
+        <a class="btn btn-blue" href="https://docs.wpfy.org/runbooks/fresh-install">Read the installation guide</a>
+        <a class="btn btn-ghost" href="https://github.com/wpfyorg/wpfy">View on GitHub</a>
+      </div>
+      <p class="hero-note reveal" style="--d:4"><strong>Beta / RC software.</strong> Test on a disposable Ubuntu VPS before important production sites.</p>
+    </div>
+    <div class="hero-terminal reveal" style="--d:2">
+      <div class="terminal">
+        <div class="term-bar">
+          <span class="term-dot d1" aria-hidden="true"></span>
+          <span class="term-dot d2" aria-hidden="true"></span>
+          <span class="term-dot d3" aria-hidden="true"></span>
+          <span class="term-title">root@vps:~</span>
+          <button type="button" class="copy-btn" aria-label="Copy install command" data-copy="curl -fsSL https://raw.githubusercontent.com/wpfyorg/wpfy/main/install.sh | sudo bash">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="5" width="8" height="9" rx="1"/><path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-5A1.5 1.5 0 0 0 3 3.5v7A1.5 1.5 0 0 0 4.5 12H5"/></svg>
+            <span>copy</span>
+          </button>
+        </div>
+        <p class="sr-only">Terminal demo: WPFY installer on Ubuntu, then site creation with flat commands.</p>
+        <pre class="term-body" id="hero-term"><span class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">curl -fsSL https://raw.githubusercontent.com/wpfyorg/wpfy/main/install.sh | sudo bash</span></span><span class="t-line t-out">[ 1/16] Checking Ubuntu release ............ <span class="t-ok">OK</span></span><span class="t-line t-out">[ 2/16] Verifying source checksum .......... <span class="t-ok">OK</span></span><span class="t-line t-out">        ...</span><span class="t-line t-out">[16/16] wpfy installed. Run: <span class="t-dim">wpfy --help</span></span></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tech-strip section-pad-sm" id="tech" aria-labelledby="tech-title">
+  <div class="wrap tech-inner">
+    <p class="tech-label" id="tech-title">Runtime stack</p>
+    <ul class="tech-icons" aria-label="Technology foundation">
+      <li><img src="assets/icons/ubuntu.svg" alt="" width="22" height="22" loading="lazy"> Ubuntu</li>
+      <li><img src="assets/icons/docker.svg" alt="" width="22" height="22" loading="lazy"> Docker</li>
+      <li><img src="assets/icons/traefikproxy.svg" alt="" width="22" height="22" loading="lazy"> Traefik</li>
+      <li><img src="assets/icons/letsencrypt.svg" alt="" width="22" height="22" loading="lazy"> Let's Encrypt</li>
+      <li><img src="assets/icons/wordpress.svg" alt="" width="22" height="22" loading="lazy"> WordPress</li>
+      <li><img src="assets/icons/nginx.svg" alt="" width="22" height="22" loading="lazy"> Nginx</li>
+      <li><img src="assets/icons/php.svg" alt="" width="22" height="22" loading="lazy"> PHP</li>
+      <li><img src="assets/icons/mariadb.svg" alt="" width="22" height="22" loading="lazy"> MariaDB</li>
+      <li><img src="assets/icons/redis.svg" alt="" width="22" height="22" loading="lazy"> Redis</li>
+    </ul>
+  </div>
+</section>
+
+<section id="why-docker" class="section-stone section-pad" aria-labelledby="why-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 id="why-title">Why Docker-first</h2>
+      <p class="lede">Host-level WordPress tooling installs shared packages on the server. WPFY replaces that with one isolated Docker Compose project per site, designed to reduce cross-site blast radius.</p>
+    </div>
+    <div class="compare">
+      <article class="compare-card reveal" style="--d:1">
+        <span class="tag tag-muted">Host-level stacks</span>
+        <h3>Shared infrastructure</h3>
+        <ul>
+          <li><span class="li-x" aria-hidden="true">×</span><div><strong>Shared host packages</strong>One PHP upgrade or package conflict can affect every site on the server.</div></li>
+          <li><span class="li-x" aria-hidden="true">×</span><div><strong>Shared PHP and databases</strong>Sites compete for one runtime and one database server.</div></li>
+          <li><span class="li-x" aria-hidden="true">×</span><div><strong>Broad blast radius</strong>Processes, users, and credentials overlap across sites.</div></li>
+          <li><span class="li-x" aria-hidden="true">×</span><div><strong>Ad-hoc workflows</strong>SSL, backups, and diagnostics become one-off scripts.</div></li>
+        </ul>
+      </article>
+      <article class="compare-card reveal" style="--d:2">
+        <span class="tag tag-green">WPFY</span>
+        <h3>Per-site Compose projects</h3>
+        <ul>
+          <li><span class="li-check" aria-hidden="true">✓</span><div><strong>No host-level Nginx, PHP, MariaDB, or Redis</strong>The Ubuntu host stays clean; services run in containers.</div></li>
+          <li><span class="li-check" aria-hidden="true">✓</span><div><strong>Per-site PHP selection</strong>Run PHP 7.4 through 8.4 side by side where supported.</div></li>
+          <li><span class="li-check" aria-hidden="true">✓</span><div><strong>Private per-site network</strong>Dedicated database, volumes, credentials, and Unix UID per site.</div></li>
+          <li><span class="li-check" aria-hidden="true">✓</span><div><strong>Repeatable commands</strong>Create, SSL, backup, restore, and remove sites with retry-safe CLI workflows.</div></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="architecture" class="section-navy section-pad" aria-labelledby="arch-title">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <h2 id="arch-title">Architecture</h2>
+      <p class="lede">Internet traffic enters a shared Traefik edge proxy, routes across the WPFY network, and terminates in isolated per-site Compose projects.</p>
+    </div>
+    <div class="arch-diagram reveal" style="--d:1">
+      <div class="arch-layer">
+        <p class="arch-layer-label">Edge</p>
+        <p class="arch-layer-title">Shared Traefik proxy · Let's Encrypt · HTTP routing</p>
+      </div>
+      <div class="arch-connector" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v12M8 12l-3-3M8 12l3-3"/></svg></div>
+      <div class="arch-layer">
+        <p class="arch-layer-label">Routing</p>
+        <p class="arch-layer-title">WPFY routing network</p>
+      </div>
+      <div class="arch-connector" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v12M8 12l-3-3M8 12l3-3"/></svg></div>
+      <div class="arch-layer">
+        <p class="arch-layer-label">Sites</p>
+        <div class="arch-sites">
+          <article class="arch-site">
+            <h4>example.com</h4>
+            <div class="arch-chips">
+              <span class="arch-chip">Nginx</span>
+              <span class="arch-chip">PHP-FPM</span>
+              <span class="arch-chip">MariaDB</span>
+              <span class="arch-chip opt">Redis</span>
+              <span class="arch-chip opt">SFTP</span>
+              <span class="arch-chip">Private network</span>
+              <span class="arch-chip">Unique UID</span>
+            </div>
+          </article>
+          <article class="arch-site">
+            <h4>client.example</h4>
+            <div class="arch-chips">
+              <span class="arch-chip">Nginx</span>
+              <span class="arch-chip">PHP-FPM</span>
+              <span class="arch-chip">MariaDB</span>
+              <span class="arch-chip opt">Redis</span>
+              <span class="arch-chip opt">SFTP</span>
+              <span class="arch-chip">Private network</span>
+              <span class="arch-chip">Unique UID</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="commands" class="section-pad" aria-labelledby="commands-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 id="commands-title">Command surface</h2>
+      <p class="lede">Flat operator commands are primary where exact equivalents exist. Grouped <code>wpfy site</code> and <code>wpfy stack</code> commands remain for compatibility.</p>
+    </div>
+    <div class="cmd-groups reveal" style="--d:1">
+      <div class="cmd-tabs" role="tablist" aria-label="Command groups">
+        <button type="button" class="cmd-tab" role="tab" id="tab-provision" aria-selected="true" aria-controls="panel-provision">Provision</button>
+        <button type="button" class="cmd-tab" role="tab" id="tab-operate" aria-selected="false" aria-controls="panel-operate">Operate</button>
+        <button type="button" class="cmd-tab" role="tab" id="tab-protect" aria-selected="false" aria-controls="panel-protect">Protect</button>
+        <button type="button" class="cmd-tab" role="tab" id="tab-observe" aria-selected="false" aria-controls="panel-observe">Observe</button>
+        <button type="button" class="cmd-tab" role="tab" id="tab-integrate" aria-selected="false" aria-controls="panel-integrate">Integrate</button>
+      </div>
+      <div class="cmd-panel is-active" role="tabpanel" id="panel-provision" aria-labelledby="tab-provision">
+        <h3>Provision sites and certificates</h3>
+        <pre class="code-block">wpfy run example.com --wp
+wpfy site ssl example.com --letsencrypt
+wpfy site list</pre>
+      </div>
+      <div class="cmd-panel" role="tabpanel" id="panel-operate" aria-labelledby="tab-operate" hidden>
+        <h3>Operate runtimes and configuration</h3>
+        <pre class="code-block">wpfy up example.com
+wpfy down example.com
+wpfy exec example.com app -- php -v
+wpfy config example.com
+wpfy refresh example.com --restart</pre>
+      </div>
+      <div class="cmd-panel" role="tabpanel" id="panel-protect" aria-labelledby="tab-protect" hidden>
+        <h3>Back up, restore, and retain</h3>
+        <pre class="code-block">wpfy backup example.com
+wpfy backup prune example.com --keep 7
+wpfy backup schedule daily --time 02:30 --s3
+wpfy restore example.com --latest
+wpfy backup edge</pre>
+      </div>
+      <div class="cmd-panel" role="tabpanel" id="panel-observe" aria-labelledby="tab-observe" hidden>
+        <h3>Inspect health, logs, and security</h3>
+        <pre class="code-block">wpfy healthcheck all
+wpfy debug example.com
+wpfy log show example.com --nginx -f
+wpfy motd
+wpfy secure example.com</pre>
+      </div>
+      <div class="cmd-panel" role="tabpanel" id="panel-integrate" aria-labelledby="tab-integrate" hidden>
+        <h3>Integrate WordPress, access, and services</h3>
+        <pre class="code-block">wpfy wp example.com plugin list
+wpfy sftp example.com --enable
+wpfy cron status
+wpfy smtp status
+wpfy dns cloudflare status</pre>
+      </div>
+      <noscript>
+        <div class="cmd-panel is-active">
+          <h3>All command groups (JavaScript disabled)</h3>
+          <pre class="code-block"># Provision
+wpfy run example.com --wp
+wpfy site ssl example.com --letsencrypt
+wpfy site list
+
+# Operate
+wpfy up example.com
+wpfy down example.com
+wpfy exec example.com app -- php -v
+wpfy config example.com
+wpfy refresh example.com --restart
+
+# Protect
+wpfy backup example.com
+wpfy backup prune example.com --keep 7
+wpfy backup schedule daily --time 02:30 --s3
+wpfy restore example.com --latest
+wpfy backup edge
+
+# Observe
+wpfy healthcheck all
+wpfy debug example.com
+wpfy log show example.com --nginx -f
+wpfy motd
+wpfy secure example.com
+
+# Integrate
+wpfy wp example.com plugin list
+wpfy sftp example.com --enable
+wpfy cron status
+wpfy smtp status
+wpfy dns cloudflare status</pre>
+        </div>
+      </noscript>
+    </div>
+  </div>
+</section>
+
+<section id="capabilities" class="section-green section-pad" aria-labelledby="cap-title">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <h2 id="cap-title">Product capabilities</h2>
+      <p class="lede">Four operational areas that define how WPFY runs WordPress on a VPS.</p>
+    </div>
+
+    <article class="cap-band reveal">
+      <div class="cap-copy">
+        <h3>Per-site isolation</h3>
+        <p>Each managed site is one Compose project with a private network, dedicated database and volumes, unique Unix UID, and unprivileged Nginx.</p>
+        <ul>
+          <li>One Compose project per site</li>
+          <li>PHP 7.4 through 8.4 where currently supported</li>
+          <li>Designed to reduce cross-site blast radius</li>
+        </ul>
+      </div>
+      <div class="cap-media">
+        <pre class="code-block">wpfy run client-a.com --wp --php 8.3
+wpfy run client-b.com --wp --php 7.4 --wpredis
+wpfy site status client-a.com</pre>
+      </div>
+    </article>
+
+    <article class="cap-band flip reveal" style="--d:1">
+      <div class="cap-copy">
+        <h3>SSL and DNS safety</h3>
+        <p>Let's Encrypt issuance runs only after DNS/IP preflight passes. Cloudflare proxy detection helps avoid failed issuance and rate-limit problems.</p>
+        <ul>
+          <li>DNS/IP preflight before ACME</li>
+          <li>Traefik-managed certificates</li>
+          <li>Cloudflare-only wildcard SSL</li>
+        </ul>
+      </div>
+      <div class="cap-media">
+        <pre class="code-block">wpfy site ssl example.com --letsencrypt
+wpfy dns cloudflare set
+wpfy config example.com --dns cloudflare</pre>
+      </div>
+    </article>
+
+    <article class="cap-band reveal" style="--d:2">
+      <div class="cap-copy">
+        <h3>Backup and recovery</h3>
+        <p>Verified file and database archives with local retention, S3-compatible remote lifecycle, scheduled all-site backups, and Traefik edge backup.</p>
+        <ul>
+          <li>Explicit retention and prune controls</li>
+          <li>Remote list, restore, delete, and prune via WPFY</li>
+          <li>Validation before live restore mutation</li>
+        </ul>
+      </div>
+      <div class="cap-media">
+        <pre class="code-block">wpfy backup example.com --s3
+wpfy backup remote list example.com
+wpfy restore example.com --latest
+wpfy backup edge --s3</pre>
+      </div>
+    </article>
+
+    <article class="cap-band flip reveal" style="--d:3">
+      <div class="cap-copy">
+        <h3>Operations and access</h3>
+        <p>Health checks, structured debug output, container logs, WP-CLI, scoped SFTP, cron timers, and SMTP configuration with explicit test sends.</p>
+        <ul>
+          <li>Sanitized config display via <code>wpfy config</code></li>
+          <li>Scoped SFTP sidecar per site</li>
+          <li>Safe refresh workflows with optional restart</li>
+        </ul>
+      </div>
+      <div class="cap-media">
+        <pre class="code-block">wpfy healthcheck all
+wpfy wp example.com plugin list
+wpfy sftp example.com --enable
+wpfy smtp test --to ops@example.com</pre>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="quick-start" class="section-pad" aria-labelledby="qs-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 id="qs-title">Quick-start workflow</h2>
+      <p class="lede">Three steps from a fresh VPS to a verified managed site. Full procedures live in the documentation.</p>
+    </div>
+    <div class="steps">
+      <article class="step-card reveal" style="--d:0">
+        <span class="step-num">Step 1</span>
+        <h3>Prepare a fresh VPS</h3>
+        <p>Supported Ubuntu environment, sudo/root access, domain DNS pointing at the server, and outbound network access.</p>
+      </article>
+      <article class="step-card reveal" style="--d:1">
+        <span class="step-num">Step 2</span>
+        <h3>Install and create a site</h3>
+        <p>Run the installer, then create your first WordPress site with a flat command.</p>
+        <pre class="code-block">curl -fsSL https://raw.githubusercontent.com/wpfyorg/wpfy/main/install.sh | sudo bash
+wpfy run example.com --wp</pre>
+        <div class="install-warning" role="note">
+          <strong>Mutable reference:</strong>
+          <span>The curl command above fetches from the <code>main</code> branch. Download and review the script first, or pin <code>WPFY_REF</code> and <code>WPFY_SOURCE_SHA256</code>. <a href="https://docs.wpfy.org/runbooks/fresh-install">Review-first install</a></span>
+        </div>
+      </article>
+      <article class="step-card reveal" style="--d:2">
+        <span class="step-num">Step 3</span>
+        <h3>Operate and verify</h3>
+        <p>Confirm site state and run operator health checks before routing production traffic.</p>
+        <pre class="code-block">wpfy site status example.com
+wpfy healthcheck all
+wpfy debug example.com</pre>
+        <p style="margin-top:0.75rem;font-size:0.875rem"><a class="btn btn-ghost" href="https://docs.wpfy.org/getting-started/introduction">Getting-started guide →</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="users" class="section-stone section-pad-sm" aria-labelledby="users-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 id="users-title">Intended users</h2>
+      <p class="lede">WPFY is built for operators who manage their own infrastructure — not for untrusted multi-tenant hosting without independent review.</p>
+    </div>
+    <div class="who-grid">
+      <article class="who-card reveal" style="--d:0">
+        <h3>WordPress agencies</h3>
+        <p>Run client sites on one VPS with per-site isolation and scoped SFTP handoff.</p>
+      </article>
+      <article class="who-card reveal" style="--d:1">
+        <h3>Freelance developers</h3>
+        <p>Provision sites with repeatable commands and keep root access to yourself.</p>
+      </article>
+      <article class="who-card reveal" style="--d:2">
+        <h3>VPS operators</h3>
+        <p>Replace ad-hoc scripts with a consistent CLI for stack and site lifecycle.</p>
+      </article>
+      <article class="who-card reveal" style="--d:3">
+        <h3>Technical self-hosters</h3>
+        <p>Self-host WordPress with Docker isolation and explicit backup workflows.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="boundaries" class="section-pad" aria-labelledby="boundaries-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 id="boundaries-title">Know the boundaries before you install</h2>
+      <p class="lede">Honest limits are part of the product. WPFY is open source under AGPL-3.0 — not a hosting company or graphical control panel.</p>
+    </div>
+    <div class="boundaries-table-wrap reveal" style="--d:1">
+      <table class="boundaries-table">
+        <thead>
+          <tr>
+            <th scope="col">Topic</th>
+            <th scope="col">Status</th>
+            <th scope="col">Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Release status</td>
+            <td><span class="status-pill status-limited">Beta / RC</span></td>
+            <td>v1.0.0-rc1 documentation describes implemented behavior; validate on a disposable VPS first.</td>
+          </tr>
+          <tr>
+            <td>Platform support</td>
+            <td><span class="status-pill status-limited">Ubuntu-first</span></td>
+            <td>Installer targets supported Ubuntu releases; not every Linux distribution.</td>
+          </tr>
+          <tr>
+            <td>Security review</td>
+            <td><span class="status-pill status-deferred">Not yet</span></td>
+            <td>No independent security audit yet; multi-tenant hosting of untrusted parties remains out of scope.</td>
+          </tr>
+          <tr>
+            <td>Host migration</td>
+            <td><span class="status-pill status-deferred">Not implemented</span></td>
+            <td><code>wpfy stack migrate</code> is not implemented in Docker-first v1.</td>
+          </tr>
+          <tr>
+            <td>Wildcard SSL</td>
+            <td><span class="status-pill status-limited">Cloudflare only</span></td>
+            <td>Wildcard certificates require Cloudflare DNS credentials; not every DNS provider.</td>
+          </tr>
+          <tr>
+            <td>Helper images</td>
+            <td><span class="status-pill status-limited">Pull-only</span></td>
+            <td>phpMyAdmin, Adminer, and Composer helpers prepare pinned images; they are not exposed public dashboards.</td>
+          </tr>
+          <tr>
+            <td>MySQLTuner</td>
+            <td><span class="status-pill status-deferred">Unavailable</span></td>
+            <td>Skipped until a vetted pinned image exists.</td>
+          </tr>
+          <tr>
+            <td>Backups</td>
+            <td><span class="status-pill status-implemented">Implemented</span></td>
+            <td>Keep off-server copies for production; destructive restore requires operator attention.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band section-pad" id="cta" aria-labelledby="cta-title">
+  <div class="wrap">
+    <h2 id="cta-title" class="reveal">Test WPFY on a disposable Ubuntu VPS</h2>
+    <p class="reveal" style="--d:1">Read the installation guide, inspect the source, and share feedback from real deployments.</p>
+    <div class="cta-actions reveal" style="--d:2">
+      <a class="btn btn-blue" href="https://docs.wpfy.org/runbooks/fresh-install">Read the installation guide</a>
+      <a class="btn" href="https://github.com/wpfyorg/wpfy">View the source on GitHub</a>
+      <a class="btn" href="https://forum.wpfy.org">Join the forum</a>
+    </div>
+  </div>
+</section>
+
+<section class="updates-band" id="updates" aria-labelledby="updates-title">
+  <div class="wrap updates-inner">
+    <div>
+      <h2 id="updates-title">Release updates</h2>
+      <p>Email subscription is not wired yet. Follow releases on GitHub or the documentation site.</p>
+    </div>
+    <div class="updates-disabled" aria-disabled="true">
+      <label class="sr-only" for="updates-email">Email address</label>
+      <input id="updates-email" type="email" placeholder="you@example.com" disabled>
+      <button type="button" class="btn" disabled>Coming soon</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a class="logo" href="/" aria-label="WPFY home">wpfy<span class="mark">_</span></a>
+      <p class="footer-meta">Docker-first WordPress infrastructure CLI for Ubuntu VPS.<br>Beta / RC software — test on a disposable VPS first.<br>Open source under AGPL-3.0.</p>
+    </div>
+    <div>
+      <p class="footer-col-title">Product</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/wpfyorg/wpfy">GitHub</a></li>
+        <li><a href="https://docs.wpfy.org">Docs</a></li>
+        <li><a href="https://forum.wpfy.org">Forum</a></li>
+        <li><a href="https://docs.wpfy.org/reference/security">Security</a></li>
+        <li><a href="https://docs.wpfy.org/releases/v1.0.0-rc1">Releases</a></li>
+        <li><a href="https://github.com/wpfyorg/wpfy/blob/main/LICENSE">License</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Resources</p>
+      <ul class="footer-links">
+        <li><a href="https://docs.wpfy.org/runbooks/fresh-install">Installation</a></li>
+        <li><a href="https://docs.wpfy.org/commands/run">Commands</a></li>
+        <li><a href="https://docs.wpfy.org/reference/architecture">Architecture</a></li>
+        <li><a href="https://docs.wpfy.org/commands/backup">Backup guide</a></li>
+        <li><a href="https://docs.wpfy.org/runbooks/enable-ssl">SSL guide</a></li>
+        <li><a href="https://github.com/wpfyorg/wpfy/blob/main/ROADMAP.md">Roadmap</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Legal</p>
+      <ul class="footer-links">
+        <li><a href="/legal/privacy">Privacy</a></li>
+        <li><a href="/legal/terms">Terms</a></li>
+        <li><a href="/legal/cookies">Cookies</a></li>
+        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+        <li><a href="/legal/affiliate-disclosure">Affiliate disclosure</a></li>
+        <li><a href="/legal/refund">Refund / cancellation</a></li>
+        <li><a href="/legal/community">Community terms</a></li>
+        <li><a href="/legal/comparison-methodology">Comparison methodology</a></li>
+      </ul>
+      <button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button>
+    </div>
+  </div>
+  <div class="wrap footer-bar">Developed by folks behind <a href="https://bricksgenius.com" target="_blank" rel="noopener">BricksGenius</a>, Hosted on <a href="https://www.vultr.com" target="_blank" rel="noopener">Vultr</a> using <a href="https://wpfy.org">wpfy</a>, built with <a href="https://bricksbuilder.io" target="_blank" rel="noopener">Bricks Builder</a> and Optimised by <a href="https://flyingpress.com" target="_blank" rel="noopener">FlyingPress</a>.</div>
+</footer>
+
+<script src="assets/main.js?v=9" defer></script>
+</body>
+</html>
