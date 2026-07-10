@@ -11,7 +11,21 @@ import base64
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
-MCP_CONFIG = ROOT.parent / ".cursor" / "mcp.json"
+MCP_CANDIDATES = [
+    ROOT.parent / "wpfy-pvt" / ".cursor" / "mcp.json",
+    ROOT.parent / ".cursor" / "mcp.json",
+    Path.home() / "Desktop" / "_Projects" / "wpfy-pvt" / ".cursor" / "mcp.json",
+]
+
+
+def _mcp_config_path() -> Path:
+    for path in MCP_CANDIDATES:
+        if path.is_file():
+            return path
+    raise FileNotFoundError(f"No MCP config found; tried: {MCP_CANDIDATES}")
+
+
+MCP_CONFIG = _mcp_config_path()
 
 
 def load_creds() -> tuple[str, str, str]:
@@ -79,17 +93,20 @@ class McpClient:
 
 
 COLORS = [
-    ("cream", "#f4efea"),
-    ("paper", "#ffffff"),
-    ("ink", "#383838"),
-    ("ink-soft", "#5c5c5c"),
-    ("blue", "#97d4ff"),
-    ("blue-deep", "#6fc2ff"),
-    ("yellow", "#ffde00"),
-    ("teal", "#53dbc9"),
-    ("teal-deep", "#16aa98"),
-    ("red", "#f2655a"),
-    ("green", "#1fa04c"),
+    ("near-black", "#17171c"),
+    ("canvas", "#ffffff"),
+    ("ink", "#212121"),
+    ("deep-green", "#003c33"),
+    ("dark-navy", "#071829"),
+    ("soft-stone", "#eeece7"),
+    ("pale-green", "#edfce9"),
+    ("pale-blue", "#f1f5ff"),
+    ("hairline", "#d9d9dd"),
+    ("muted", "#93939f"),
+    ("body-muted", "#616161"),
+    ("action-blue", "#1863dc"),
+    ("focus-blue", "#4c6ee6"),
+    ("coral", "#ff7759"),
 ]
 
 from bricks_common import MONO_TYPO, el, marquee_track_html
@@ -282,14 +299,14 @@ if ( ! function_exists( 'wpfy_marketing_body_class' ) ) {
 if ( ! function_exists( 'wpfy_marketing_document_title' ) ) {
 	function wpfy_marketing_document_title( $title ) {
 		if ( is_front_page() ) {
-			return 'WPFY · Docker-first WordPress server management for Ubuntu VPS';
+			return 'WPFY · Docker-first WordPress infrastructure CLI for Ubuntu VPS';
 		}
 		return $title;
 	}
 	add_filter( 'pre_get_document_title', 'wpfy_marketing_document_title', 20 );
 	function wpfy_marketing_document_title_parts( $parts ) {
 		if ( is_front_page() ) {
-			$parts['title'] = 'WPFY · Docker-first WordPress server management for Ubuntu VPS';
+			$parts['title'] = 'WPFY · Docker-first WordPress infrastructure CLI for Ubuntu VPS';
 			unset( $parts['tagline'], $parts['site'] );
 		}
 		return $parts;
@@ -404,71 +421,80 @@ from bricks_builders import deco_html, footer_col_title, link_list, nav_ul, reve
 def build_header_elements() -> list[dict]:
     """Announce bar + sticky header with logo, nav, CTA."""
     nav_links = [
-        ("Stack", "#stack"),
-        ("Features", "#features"),
-        ("How it Works", "#how-it-works"),
-        ("Forum", "https://forum.wpfy.org"),
+        ("Product", "#why-docker"),
+        ("Architecture", "#architecture"),
+        ("Commands", "#commands"),
         ("Docs", "https://docs.wpfy.org"),
+        ("Forum", "https://forum.wpfy.org"),
         ("GitHub", "https://github.com/wpfyorg/wpfy"),
     ]
     out = [
-        el("an0001", "section", 0, ["an0002"], {"tag": "div", "_cssGlobalClasses": ["wpfy-announce"]}, "Announce"),
+        el("an0001", "section", 0, ["an0002"], {"tag": "div", "_cssClasses": "announce"}, "Announce"),
         el("an0002", "container", "an0001", ["an0003"], {"_direction": "row", "_justifyContent": "center", "_alignItems": "center"}, "Announce inner"),
         el("an0003", "text-basic", "an0002", [], {
-            "text": 'WPFY is in beta · test on a fresh Ubuntu VPS first — <a href="https://github.com/wpfyorg/wpfy">Read the notes →</a>',
+            "text": (
+                'WPFY is currently beta/RC software. Test it on a fresh or disposable Ubuntu VPS first. '
+                '<a href="https://docs.wpfy.org/releases/v1.0.0-rc1">Read the release notes</a>'
+            ),
         }),
-        el("hd0001", "section", 0, ["hd0002"], {"tag": "header", "_cssGlobalClasses": ["wpfy-site-header"]}, "Site header"),
+        el("hd0001", "section", 0, ["hd0002"], {"tag": "header", "_cssClasses": "site-header"}, "Site header"),
         el("hd0002", "container", "hd0001", ["hd0003", "hd0004", "hd0005", "hd0006"], {
-            "_cssGlobalClasses": ["wpfy-wrap"],
+            "_cssClasses": "wrap nav",
             "_direction": "row",
             "_alignItems": "center",
             "_columnGap": "28px",
             "_heightMin": "64px",
         }, "Nav row"),
         el("hd0003", "text-basic", "hd0002", [], {
-            "text": 'wpfy<span style="color:var(--wpfy-teal-deep)">_</span>',
+            "text": 'wpfy<span class="mark">_</span>',
             "tag": "a",
             "link": {"type": "external", "url": "/"},
             "_cssGlobalClasses": ["wpfy-logo"],
         }, "Logo"),
         el("hd0005", "button", "hd0002", [], {
-            "text": "Star on GitHub",
-            "link": {"type": "external", "url": "https://github.com/wpfyorg/wpfy", "newTab": True},
-            "_cssGlobalClasses": ["wpfy-btn", "wpfy-btn-blue"],
-        }, "GitHub CTA"),
-        el("hd0006", "button", "hd0002", [], {
-            "text": "☰",
-            "_cssClasses": "wpfy-menu-btn",
-            "_attributes": [
-                {"id": "mb0002", "name": "aria-label", "value": "Toggle navigation"},
-                {"id": "mb0003", "name": "aria-expanded", "value": "false"},
-                {"id": "mb0004", "name": "aria-controls", "value": "wpfy-nav-links"},
-            ],
-            "_display:mobile_landscape": "inline-flex",
-            "_display": "none",
-            "_cssCustom": "%root% { border: var(--wpfy-border); border-radius: 2px; background: var(--wpfy-paper); padding: 9px; min-height: auto; }",
+            "text": "Install WPFY",
+            "link": {"type": "external", "url": "https://docs.wpfy.org/runbooks/fresh-install", "newTab": True},
+            "_cssClasses": "btn btn-primary",
+        }, "Install CTA"),
+        el("hd0006", "html", "hd0002", [], {
+            "html": (
+                '<button type="button" class="menu-btn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">'
+                '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">'
+                '<path d="M2 4.5h12M2 8h12M2 11.5h12"/></svg></button>'
+            ),
         }, "Mobile menu"),
     ]
-    out += nav_ul("hd0004", "hd0002", nav_links)
+    out += nav_ul("hd0004", "hd0002", nav_links, css_id="nav-links")
     return out
 
 
 PRODUCT_LINKS = [
     ("GitHub", "https://github.com/wpfyorg/wpfy"),
-    ("Forum", "https://forum.wpfy.org"),
     ("Docs", "https://docs.wpfy.org"),
-    ("Security", "https://github.com/wpfyorg/wpfy/blob/main/docs/SECURITY.md"),
-    ("License (AGPL-3.0)", "https://github.com/wpfyorg/wpfy/blob/main/LICENSE"),
+    ("Forum", "https://forum.wpfy.org"),
+    ("Security", "https://docs.wpfy.org/reference/security"),
+    ("Releases", "https://docs.wpfy.org/releases/v1.0.0-rc1"),
+    ("License", "https://github.com/wpfyorg/wpfy/blob/main/LICENSE"),
+]
+
+RESOURCE_LINKS = [
+    ("Installation", "https://docs.wpfy.org/runbooks/fresh-install"),
+    ("Commands", "https://docs.wpfy.org/commands/run"),
+    ("Architecture", "https://docs.wpfy.org/reference/architecture"),
+    ("Backup guide", "https://docs.wpfy.org/commands/backup"),
+    ("SSL guide", "https://docs.wpfy.org/runbooks/enable-ssl"),
+    ("Roadmap", "https://github.com/wpfyorg/wpfy/blob/main/ROADMAP.md"),
 ]
 
 LEGAL_LINKS = [
     ("Privacy", "/legal/privacy"),
     ("Terms", "/legal/terms"),
     ("Cookies", "/legal/cookies"),
-    ("Affiliate", "/legal/affiliate-disclosure"),
     ("Disclaimer", "/legal/disclaimer"),
-    ("Refund", "/legal/refund"),
-    ("Community", "/legal/community"),
+    ("Affiliate disclosure", "/legal/affiliate-disclosure"),
+    ("Refund / cancellation", "/legal/refund"),
+    ("Community terms", "/legal/community"),
+    ("Comparison methodology", "/legal/comparison-methodology"),
 ]
 
 
@@ -476,13 +502,12 @@ def build_footer_elements() -> list[dict]:
     grid_id = "ft0003"
     c1, c2, c3, c4 = "ftc001", "ftc002", "ftc003", "ftc004"
     out = [
-        el("ft0001", "section", 0, ["ft0002"], {"tag": "footer", "_cssGlobalClasses": ["wpfy-site-footer"]}, "Site footer"),
+        el("ft0001", "section", 0, ["ft0002"], {"tag": "footer", "_cssClasses": "site-footer"}, "Site footer"),
         el("ft0002", "container", "ft0001", [grid_id, "ft0004"], {
-            "_cssGlobalClasses": ["wpfy-wrap"],
-            "_cssClasses": "wpfy-footer-inner",
+            "_cssClasses": "wrap footer-grid",
         }),
         el(grid_id, "block", "ft0002", [c1, c2, c3, c4], {
-            "_cssClasses": "wpfy-footer-grid",
+            "_cssClasses": "footer-grid",
             "_display": "grid",
             "_gridTemplateColumns": "repeat(4, minmax(0, 1fr))",
             "_gridGap": "32px 40px",
@@ -490,7 +515,7 @@ def build_footer_elements() -> list[dict]:
             "_gridTemplateColumns:tablet_portrait": "1fr 1fr",
             "_gridTemplateColumns:mobile_portrait": "1fr",
         }, "Footer grid"),
-        el(c1, "block", grid_id, ["ftl001", "ftm001"], {"_cssClasses": "wpfy-footer-col", "_rowGap": "14px"}),
+        el(c1, "block", grid_id, ["ftl001", "ftm001"], {"_rowGap": "14px"}),
         el("ftl001", "text-basic", c1, [], {
             "text": 'wpfy<span class="mark">_</span>',
             "tag": "a",
@@ -499,23 +524,23 @@ def build_footer_elements() -> list[dict]:
         }, "Logo"),
         el("ftm001", "text-basic", c1, [], {
             "text": (
-                "Docker-first WordPress server management for Ubuntu VPS.<br>"
-                "Beta software, test on a fresh VPS first.<br>"
-                "Licensed under AGPL-3.0."
+                "Docker-first WordPress infrastructure CLI for Ubuntu VPS.<br>"
+                "Beta / RC software — test on a disposable VPS first.<br>"
+                "Open source under AGPL-3.0."
             ),
             "tag": "p",
-            "_cssClasses": "wpfy-footer-meta",
+            "_cssClasses": "footer-meta",
         }),
-        el(c2, "block", grid_id, ["ftp001", "ftpl01"], {"_cssClasses": "wpfy-footer-col", "_rowGap": "14px"}),
+        el(c2, "block", grid_id, ["ftp001", "ftpl01"], {"_rowGap": "14px"}),
         footer_col_title("ftp001", c2, "Product"),
-        el(c3, "block", grid_id, ["ftl201", "ftll01"], {"_cssClasses": "wpfy-footer-col", "_rowGap": "14px"}),
-        footer_col_title("ftl201", c3, "Legal"),
-        el(c4, "block", grid_id, ["fts001", "ftcs01"], {"_cssClasses": "wpfy-footer-col", "_rowGap": "14px"}),
-        footer_col_title("fts001", c4, "Settings"),
+        el(c3, "block", grid_id, ["ftr001", "ftrl01"], {"_rowGap": "14px"}),
+        footer_col_title("ftr001", c3, "Resources"),
+        el(c4, "block", grid_id, ["ftl201", "ftll01", "ftcs01"], {"_rowGap": "14px"}),
+        footer_col_title("ftl201", c4, "Legal"),
         el("ftcs01", "button", c4, [], {
             "text": "Cookie settings",
             "tag": "button",
-            "_cssClasses": "wpfy-cookie-settings",
+            "_cssClasses": "cookie-settings-link",
             "_attributes": [{"id": "ftcsk", "name": "data-cookie-settings", "value": ""}],
         }),
         el("ft0004", "text", "ft0002", [], {
@@ -527,108 +552,19 @@ def build_footer_elements() -> list[dict]:
                 '<a href="https://bricksbuilder.io" target="_blank" rel="noopener">Bricks Builder</a> and Optimised by '
                 '<a href="https://flyingpress.com" target="_blank" rel="noopener">FlyingPress</a>.'
             ),
-            "_cssClasses": "wpfy-footer-bar",
+            "_cssClasses": "footer-bar",
         }, "Footer bar"),
     ]
-    out += link_list("ftpl01", c2, PRODUCT_LINKS, new_tab=True, item_ids=["ftpr01", "ftpr02", "ftpr03", "ftpr04", "ftpr05"])
-    out += link_list("ftll01", c3, LEGAL_LINKS, item_ids=["ftlg01", "ftlg02", "ftlg03", "ftlg04", "ftlg05", "ftlg06", "ftlg07"])
+    out += link_list("ftpl01", c2, PRODUCT_LINKS, new_tab=True, item_ids=["ftpr01", "ftpr02", "ftpr03", "ftpr04", "ftpr05", "ftpr06"])
+    out += link_list("ftrl01", c3, RESOURCE_LINKS, new_tab=True, item_ids=["ftrs01", "ftrs02", "ftrs03", "ftrs04", "ftrs05", "ftrs06"])
+    out += link_list("ftll01", c4, LEGAL_LINKS, item_ids=["ftlg01", "ftlg02", "ftlg03", "ftlg04", "ftlg05", "ftlg06", "ftlg07", "ftlg08"])
     return out
 
 
 def build_hero_section() -> list[dict]:
-    from decorations import HERO_DOODLES
+    from batch2_sections import extract_hero_section
 
-    copy_cmd = "curl -fsSL https://raw.githubusercontent.com/wpfyorg/wpfy/main/install.sh | sudo bash"
-    term_id, term_wrap, doodle_id = "hr0012", "hr0010", "hr0011"
-    bar_id, pre_id = "hrbar1", "hrpre1"
-    dot_ids = ["hrdot1", "hrdot2", "hrdot3"]
-    return [
-        el("hr0001", "section", 0, ["hr0002"], {
-            "tag": "section",
-            "_cssGlobalClasses": ["wpfy-hero"],
-            "_attributes": [{"id": "hrattr", "name": "aria-labelledby", "value": "hero-title"}],
-        }, "Hero"),
-        el("hr0002", "container", "hr0001", ["hr0003", "hr0004", "hr0005", "hr0006", "hr0007"], {
-            "_cssGlobalClasses": ["wpfy-wrap"],
-            "_direction": "column",
-            "_alignItems": "center",
-        }),
-        el("hr0003", "heading", "hr0002", [], {
-            "text": "Infrastructure for WordPress",
-            "tag": "h1",
-            "_cssId": "hero-title",
-            "_cssClasses": "wpfy-reveal",
-            "_cssGlobalClasses": ["wpfy-heading-mono"],
-            "_widthMax": "1080px",
-            "_typography": {"font-size": "clamp(2rem, 1rem + 4.6vw, 3.6rem)", "text-align": "center"},
-        }),
-        el("hr0004", "text-basic", "hr0002", [], {
-            "text": "Docker-first server management for Ubuntu VPS. Install, provision, secure, back up, restore, and manage isolated WordPress sites from one CLI.",
-            "_cssClasses": "wpfy-reveal",
-            "_attributes": reveal_attr(1),
-            "_typography": {"font-size": "1.1rem", "color": {"raw": "var(--wpfy-ink-soft)"}, "text-align": "center"},
-            "_widthMax": "700px",
-            "_margin": {"top": "24px", "bottom": "36px"},
-        }),
-        el("hr0005", "block", "hr0002", ["hr0008", "hr0009"], {
-            "_cssClasses": "wpfy-reveal wpfy-hero-ctas",
-            "_attributes": reveal_attr(2),
-            "_direction": "row",
-            "_justifyContent": "center",
-            "_columnGap": "16px",
-            "_flexWrap": "wrap",
-        }),
-        el("hr0008", "button", "hr0005", [], {
-            "text": "View on GitHub",
-            "link": {"type": "external", "url": "https://github.com/wpfyorg/wpfy", "newTab": True},
-            "_cssGlobalClasses": ["wpfy-btn", "wpfy-btn-blue"],
-        }),
-        el("hr0009", "button", "hr0005", [], {
-            "text": "Installation Guide",
-            "link": {"type": "external", "url": "https://github.com/wpfyorg/wpfy/blob/main/docs/INSTALLER.md", "newTab": True},
-            "_cssGlobalClasses": ["wpfy-btn"],
-        }),
-        el("hr0006", "text-basic", "hr0002", [], {
-            "text": "<strong>Beta software.</strong> Test on a fresh VPS before important production sites.",
-            "_cssClasses": "wpfy-reveal",
-            "_attributes": reveal_attr(3),
-            "_typography": {**MONO_TYPO, "font-size": "0.75rem", "text-align": "center", "color": {"raw": "var(--wpfy-ink-soft)"}},
-            "_margin": {"top": "28px"},
-        }),
-        el("hr0007", "div", "hr0002", [doodle_id, term_wrap], {
-            "_cssClasses": "wpfy-reveal wpfy-term-stage",
-            "_attributes": reveal_attr(4),
-            "_widthMax": "860px",
-            "_margin": {"top": "64px", "left": "auto", "right": "auto"},
-        }),
-        deco_html(doodle_id, "hr0007", HERO_DOODLES, "Hero doodles"),
-        el(term_wrap, "block", "hr0007", [bar_id, pre_id], {"_cssClasses": "wpfy-terminal"}, "Terminal"),
-        el(bar_id, "block", term_wrap, [*dot_ids, "hrttt1", "hrcopy"], {
-            "_cssClasses": "wpfy-term-bar",
-            "_direction": "row",
-            "_alignItems": "center",
-            "_columnGap": "8px",
-        }),
-        el(dot_ids[0], "div", bar_id, [], {"_cssClasses": "wpfy-term-dot d1", "_width": "11px", "_height": "11px"}),
-        el(dot_ids[1], "div", bar_id, [], {"_cssClasses": "wpfy-term-dot d2", "_width": "11px", "_height": "11px"}),
-        el(dot_ids[2], "div", bar_id, [], {"_cssClasses": "wpfy-term-dot d3", "_width": "11px", "_height": "11px"}),
-        el("hrttt1", "text-basic", bar_id, [], {
-            "text": "root@vps:~",
-            "tag": "span",
-            "_cssClasses": "wpfy-term-title",
-            "_margin": {"left": "8px"},
-        }),
-        el("hrcopy", "html", bar_id, [], {
-            "html": (
-                f'<button type="button" class="wpfy-copy-btn" data-copy="{copy_cmd}">'
-                "<span>copy</span></button>"
-            ),
-            "_margin": {"left": "auto"},
-        }, "Copy install cmd"),
-        el(pre_id, "html", term_wrap, [], {
-            "html": '<pre class="wpfy-term-body" id="wpfy-hero-term" aria-hidden="true"></pre>',
-        }, "Terminal output"),
-    ]
+    return [el("hr0001", "html", 0, [], {"html": extract_hero_section()}, "Hero")]
 
 
 def build_marquee() -> list[dict]:
@@ -747,7 +683,7 @@ def push_templates_refresh(client: McpClient) -> None:
         print(f"  ~ template #{template_id} ({area})")
 
 
-HOME_PAGE_TITLE = "WPFY · Docker-first WordPress server management for Ubuntu VPS"
+HOME_PAGE_TITLE = "WPFY · Docker-first WordPress infrastructure CLI for Ubuntu VPS"
 
 
 def push_batch2(client: McpClient, page_id: int | None = None) -> None:
@@ -755,16 +691,15 @@ def push_batch2(client: McpClient, page_id: int | None = None) -> None:
 
     if page_id is None:
         page_id = resolve_home_page_id(client)
-    print(f"→ Batch 2 sections on page #{page_id}")
+    print(f"→ Redesign sections on page #{page_id}")
     hero = build_hero_section()
-    marquee = build_marquee()
     batch2 = build_batch2_sections()
-    push_content(client, page_id, hero + marquee + batch2)
+    push_content(client, page_id, hero + batch2)
     client.ability("novamira/update-post", {
         "post_id": page_id,
         "title": HOME_PAGE_TITLE,
     })
-    print(f"  + {len(batch2)} section elements ({len(hero + marquee + batch2)} total nodes)")
+    print(f"  + {len(batch2)} section elements ({len(hero + batch2)} total nodes)")
     print(f"  + page title → {HOME_PAGE_TITLE!r}")
 
 

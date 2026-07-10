@@ -3,33 +3,63 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WPFY · Docker-first WordPress server management for Ubuntu VPS</title>
-<meta name="description" content="WPFY is a beta-stage, Docker-first CLI for installing and managing isolated WordPress stacks on Ubuntu VPS servers. Per-site Compose stacks, Traefik edge proxy, SSL preflight, backups, restore, diagnostics, and SFTP.">
+<title>WPFY · Docker-first WordPress infrastructure CLI for Ubuntu VPS</title>
+<meta name="description" content="WPFY is open-source, beta-stage CLI software for installing and operating isolated WordPress stacks on Ubuntu VPS servers. Per-site Docker Compose, Traefik edge proxy, SSL preflight, backups, restore, and diagnostics.">
+<link rel="canonical" href="https://wpfy.org/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://wpfy.org/">
+<meta property="og:title" content="WPFY · Docker-first WordPress infrastructure CLI">
+<meta property="og:description" content="Operate WordPress infrastructure from one CLI. Isolated Compose stacks, Traefik edge routing, SSL preflight, backups, and diagnostics on Ubuntu VPS.">
+<meta property="og:site_name" content="WPFY">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="WPFY · Docker-first WordPress infrastructure CLI">
+<meta name="twitter:description" content="Operate WordPress infrastructure from one CLI. Beta software — test on a disposable Ubuntu VPS first.">
+<link rel="icon" href="assets/icons/docker.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=9">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "WPFY",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Ubuntu",
+  "description": "Docker-first WordPress VPS installer and server-management CLI with per-site Compose isolation, Traefik edge proxy, SSL preflight, backups, and diagnostics.",
+  "url": "https://wpfy.org/",
+  "downloadUrl": "https://github.com/wpfyorg/wpfy",
+  "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+  "softwareVersion": "1.0.0-rc1",
+  "isAccessibleForFree": true,
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
 </head>
 <body>
 
 <div class="announce">
-  WPFY is in beta · test on a fresh Ubuntu VPS first
-  <a href="https://github.com/wpfyorg/wpfy">Read the notes &rarr;</a>
+  WPFY is currently beta/RC software. Test it on a fresh or disposable Ubuntu VPS first.
+  <a href="https://docs.wpfy.org/releases/v1.0.0-rc1">Read the release notes</a>
 </div>
 
 <header class="site-header">
   <div class="wrap nav">
-    <a class="logo" href="#" aria-label="WPFY home">wpfy<span class="mark">_</span></a>
+    <a class="logo" href="/" aria-label="WPFY home">wpfy<span class="mark">_</span></a>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#stack">Stack</a></li>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#how-it-works">How it Works</a></li>
-      <li><a href="https://forum.wpfy.org">Forum</a></li>
+      <li><a href="#why-docker">Product</a></li>
+      <li><a href="#architecture">Architecture</a></li>
+      <li><a href="#commands">Commands</a></li>
       <li><a href="https://docs.wpfy.org">Docs</a></li>
+      <li><a href="https://forum.wpfy.org">Forum</a></li>
       <li><a href="https://github.com/wpfyorg/wpfy">GitHub</a></li>
     </ul>
     <div class="nav-actions">
-      <a class="btn btn-blue" href="https://github.com/wpfyorg/wpfy">Star on GitHub</a>
+      <a class="btn btn-primary" href="https://docs.wpfy.org/runbooks/fresh-install">Install WPFY</a>
     </div>
     <button type="button" class="menu-btn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M2 4.5h12M2 8h12M2 11.5h12"/></svg>
@@ -39,519 +69,506 @@
 
 <main>
 
-<!-- Hero -->
-<section class="hero" aria-labelledby="hero-title">
-  <div class="wrap">
-    <h1 id="hero-title" class="reveal">Infrastructure for WordPress</h1>
-    <p class="sub reveal" style="--d:1">Docker-first server management for Ubuntu VPS. Install, provision, secure, back up, restore, and manage isolated WordPress sites from one CLI.</p>
-    <div class="hero-ctas reveal" style="--d:2">
-      <a class="btn btn-blue" href="https://github.com/wpfyorg/wpfy">View on GitHub</a>
-      <a class="btn" href="https://github.com/wpfyorg/wpfy/blob/main/docs/INSTALLER.md">Installation Guide</a>
+<section class="hero section-pad-sm" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow reveal">Docker-first WordPress infrastructure</p>
+      <h1 id="hero-title" class="reveal" style="--d:1">Operate WordPress infrastructure from one CLI.</h1>
+      <p class="hero-lede reveal" style="--d:2">WPFY turns a fresh Ubuntu VPS into an isolated, Docker-backed WordPress host. Provision sites, manage SSL, run backups, restore safely, inspect health, and operate every site from a consistent command surface.</p>
+      <div class="hero-ctas reveal" style="--d:3">
+        <a class="btn btn-blue" href="https://docs.wpfy.org/runbooks/fresh-install">Read the installation guide</a>
+        <a class="btn btn-ghost" href="https://github.com/wpfyorg/wpfy">View on GitHub</a>
+      </div>
+      <p class="hero-note reveal" style="--d:4"><strong>Beta / RC software.</strong> Test on a disposable Ubuntu VPS before important production sites.</p>
     </div>
-    <p class="hero-note reveal" style="--d:3"><strong>Beta software.</strong> Test on a fresh VPS before important production sites.</p>
-
-    <div class="term-stage reveal" style="--d:4">
-      <span class="doodle doodle-cloud-l" aria-hidden="true">
-        <svg viewBox="0 0 150 70" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M28 58c-12 0-22-7-22-17 0-9 8-15 16-15 2-9 11-16 22-16 10 0 18 5 21 13 2-1 5-2 8-2 10 0 18 7 18 16 0 11-10 21-24 21H28Z"/></svg>
-      </span>
-      <span class="doodle doodle-cloud-r" aria-hidden="true">
-        <svg viewBox="0 0 170 80" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M34 66c-14 0-26-8-26-19 0-10 9-17 18-17 3-11 13-19 26-19 11 0 21 6 24 15 3-2 6-3 10-3 11 0 20 8 20 18 0 13-11 25-27 25H34Z"/></svg>
-      </span>
-      <span class="doodle doodle-spark-1" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="#53dbc9" stroke="#383838" stroke-width="2"><path d="M12 2l2.6 7.4L22 12l-7.4 2.6L12 22l-2.6-7.4L2 12l7.4-2.6L12 2Z"/></svg>
-      </span>
-      <span class="doodle doodle-spark-2" aria-hidden="true">
-        <svg viewBox="0 0 20 20" fill="#f2655a" stroke="#383838" stroke-width="2"><rect x="4" y="4" width="12" height="12" transform="rotate(45 10 10)"/></svg>
-      </span>
-      <span class="bubble" aria-hidden="true">Fresh VPS to WordPress in minutes!</span>
-
+    <div class="hero-terminal reveal" style="--d:2">
       <div class="terminal">
         <div class="term-bar">
-          <span class="term-dot d1" aria-hidden="true"></span><span class="term-dot d2" aria-hidden="true"></span><span class="term-dot d3" aria-hidden="true"></span>
+          <span class="term-dot d1" aria-hidden="true"></span>
+          <span class="term-dot d2" aria-hidden="true"></span>
+          <span class="term-dot d3" aria-hidden="true"></span>
           <span class="term-title">root@vps:~</span>
-          <button class="copy-btn" aria-label="Copy install command" data-copy="curl -fsSL https://raw.githubusercontent.com/wpfyorg/wpfy/main/install.sh | sudo bash">
+          <button type="button" class="copy-btn" aria-label="Copy install command" data-copy="curl -fsSL https://raw.githubusercontent.com/wpfyorg/wpfy/main/install.sh | sudo bash">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="5" y="5" width="8" height="9" rx="1"/><path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-5A1.5 1.5 0 0 0 3 3.5v7A1.5 1.5 0 0 0 4.5 12H5"/></svg>
             <span>copy</span>
           </button>
         </div>
-        <p style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Terminal demo: the WPFY installer runs on a fresh Ubuntu VPS, then a WordPress site is created with SSL preflight.</p>
-        <pre class="term-body" id="hero-term" aria-hidden="true"><span class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">curl -fsSL https://raw.githubusercontent.com/wpfyorg/wpfy/main/install.sh | sudo bash</span></span><span class="t-line t-out">[ 1/16] Checking Ubuntu release ............ <span class="t-ok">OK</span></span><span class="t-line t-out">[ 2/16] Verifying source checksum .......... <span class="t-ok">OK</span></span><span class="t-line t-out">        ...</span><span class="t-line t-out">[16/16] wpfy installed. Run: <span class="t-dim">wpfy --help</span></span></pre>
+        <p class="sr-only">Terminal demo: WPFY installer on Ubuntu, then site creation with flat commands.</p>
+        <pre class="term-body" id="hero-term"><span class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">curl -fsSL https://raw.githubusercontent.com/wpfyorg/wpfy/main/install.sh | sudo bash</span></span><span class="t-line t-out">[ 1/16] Checking Ubuntu release ............ <span class="t-ok">OK</span></span><span class="t-line t-out">[ 2/16] Verifying source checksum .......... <span class="t-ok">OK</span></span><span class="t-line t-out">        ...</span><span class="t-line t-out">[16/16] wpfy installed. Run: <span class="t-dim">wpfy --help</span></span></pre>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Marquee -->
-<div class="marquee marquee-yellow" aria-hidden="true">
-  <div class="marquee-track"><span>WORDPRESS</span><span>+</span><span>DOCKER-FIRST</span><span>+</span><span>UBUNTU VPS</span><span>+</span><span>DOCKER COMPOSE</span><span>+</span><span>PER-SITE STACKS</span><span>+</span><span>SITE ISOLATION</span><span>+</span><span>WP-CLI</span><span>+</span><span>TRAEFIK</span><span>+</span><span>LET'S ENCRYPT</span><span>+</span><span>SSL AUTOMATION</span><span>+</span><span>NGINX</span><span>+</span><span>PHP-FPM</span><span>+</span><span>MARIADB</span><span>+</span><span>REDIS CACHE</span><span>+</span><span>SFTP ACCESS</span><span>+</span><span>BACKUPS</span><span>+</span><span>RESTORE</span><span>+</span><span>SERVER HEALTH</span><span>+</span><span>LOGS</span><span>+</span><span>DIAGNOSTICS</span><span>+</span><span>MULTI-SITE VPS</span><span>+</span><span>PRODUCTION STACKS</span><span>+</span><span>SECURE ACCESS</span><span>+</span><span>STACK AUTOMATION</span><span>+</span><span>CLI WORKFLOWS</span><span>+</span><span>CONTAINERIZED HOSTING</span><span>+</span><span>DEVOPS FOR WORDPRESS</span><span>+</span><span>WORDPRESS</span><span>+</span><span>DOCKER-FIRST</span><span>+</span><span>UBUNTU VPS</span><span>+</span><span>DOCKER COMPOSE</span><span>+</span><span>PER-SITE STACKS</span><span>+</span><span>SITE ISOLATION</span><span>+</span><span>WP-CLI</span><span>+</span><span>TRAEFIK</span><span>+</span><span>LET'S ENCRYPT</span><span>+</span><span>SSL AUTOMATION</span><span>+</span><span>NGINX</span><span>+</span><span>PHP-FPM</span><span>+</span><span>MARIADB</span><span>+</span><span>REDIS CACHE</span><span>+</span><span>SFTP ACCESS</span><span>+</span><span>BACKUPS</span><span>+</span><span>RESTORE</span><span>+</span><span>SERVER HEALTH</span><span>+</span><span>LOGS</span><span>+</span><span>DIAGNOSTICS</span><span>+</span><span>MULTI-SITE VPS</span><span>+</span><span>PRODUCTION STACKS</span><span>+</span><span>SECURE ACCESS</span><span>+</span><span>STACK AUTOMATION</span><span>+</span><span>CLI WORKFLOWS</span><span>+</span><span>CONTAINERIZED HOSTING</span><span>+</span><span>DEVOPS FOR WORDPRESS</span><span>+</span></div>
-</div>
+<section class="tech-strip section-pad-sm" id="tech" aria-labelledby="tech-title">
+  <div class="wrap tech-inner">
+    <p class="tech-label" id="tech-title">Runtime stack</p>
+    <ul class="tech-icons" aria-label="Technology foundation">
+      <li><img src="assets/icons/ubuntu.svg" alt="" width="22" height="22" loading="lazy"> Ubuntu</li>
+      <li><img src="assets/icons/docker.svg" alt="" width="22" height="22" loading="lazy"> Docker</li>
+      <li><img src="assets/icons/traefikproxy.svg" alt="" width="22" height="22" loading="lazy"> Traefik</li>
+      <li><img src="assets/icons/letsencrypt.svg" alt="" width="22" height="22" loading="lazy"> Let's Encrypt</li>
+      <li><img src="assets/icons/wordpress.svg" alt="" width="22" height="22" loading="lazy"> WordPress</li>
+      <li><img src="assets/icons/nginx.svg" alt="" width="22" height="22" loading="lazy"> Nginx</li>
+      <li><img src="assets/icons/php.svg" alt="" width="22" height="22" loading="lazy"> PHP</li>
+      <li><img src="assets/icons/mariadb.svg" alt="" width="22" height="22" loading="lazy"> MariaDB</li>
+      <li><img src="assets/icons/redis.svg" alt="" width="22" height="22" loading="lazy"> Redis</li>
+    </ul>
+  </div>
+</section>
 
-<!-- Problem vs Solution -->
-<section id="problem" class="section-sky" aria-labelledby="problem-title">
-  <span class="edge-doodle" style="left:7%;width:130px" aria-hidden="true">
-    <svg viewBox="0 0 150 70" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M28 58c-12 0-22-7-22-17 0-9 8-15 16-15 2-9 11-16 22-16 10 0 18 5 21 13 2-1 5-2 8-2 10 0 18 7 18 16 0 11-10 21-24 21H28Z"/></svg>
-  </span>
-  <span class="edge-doodle edge-icon" style="right:9%;width:44px" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="#ffde00" stroke="#383838" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none"/></svg>
-  </span>
-  <span class="drift d-icon" style="top:12%;right:4%;width:64px" aria-hidden="true">
-    <img src="assets/icons/docker.svg" alt="" width="64" height="64" loading="lazy">
-  </span>
-  <span class="drift d-cloud" style="bottom:10%;left:2%;width:110px" aria-hidden="true">
-    <svg viewBox="0 0 150 70" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M28 58c-12 0-22-7-22-17 0-9 8-15 16-15 2-9 11-16 22-16 10 0 18 5 21 13 2-1 5-2 8-2 10 0 18 7 18 16 0 11-10 21-24 21H28Z"/></svg>
-  </span>
+<section id="why-docker" class="section-stone section-pad" aria-labelledby="why-title">
   <div class="wrap">
     <div class="section-head reveal">
-      <h2 id="problem-title">Host-level WordPress stacks get messy fast</h2>
-      <p class="lede">Traditional server tooling installs Nginx, PHP, MariaDB, and Redis directly on the host. That works, until it doesn't. WPFY replaces all of it with one isolated Docker Compose stack per site.</p>
+      <h2 id="why-title">Why Docker-first</h2>
+      <p class="lede">Host-level WordPress tooling installs shared packages on the server. WPFY replaces that with one isolated Docker Compose project per site, designed to reduce cross-site blast radius.</p>
     </div>
     <div class="compare">
-      <div class="compare-card reveal" style="--d:1">
-        <span class="tag tag-red">The old way</span>
+      <article class="compare-card reveal" style="--d:1">
+        <span class="tag tag-muted">Host-level stacks</span>
+        <h3>Shared infrastructure</h3>
         <ul>
-          <li><span class="li-x">x</span><div><strong>Shared host packages</strong>One PHP upgrade or package conflict can affect every site on the server.</div></li>
-          <li><span class="li-x">x</span><div><strong>Multi-site sprawl</strong>Sites share processes, users, and config; cleanly removing one site is harder than it should be.</div></li>
-          <li><span class="li-x">x</span><div><strong>Ad-hoc workflows</strong>SSL, backups, restore, diagnostics, and SFTP end up as one-off scripts and tribal knowledge.</div></li>
-          <li><span class="li-x">x</span><div><strong>Hand-built stacks</strong>Compose files, proxies, and certificates assembled by hand for every site.</div></li>
+          <li><span class="li-x" aria-hidden="true">×</span><div><strong>Shared host packages</strong>One PHP upgrade or package conflict can affect every site on the server.</div></li>
+          <li><span class="li-x" aria-hidden="true">×</span><div><strong>Shared PHP and databases</strong>Sites compete for one runtime and one database server.</div></li>
+          <li><span class="li-x" aria-hidden="true">×</span><div><strong>Broad blast radius</strong>Processes, users, and credentials overlap across sites.</div></li>
+          <li><span class="li-x" aria-hidden="true">×</span><div><strong>Ad-hoc workflows</strong>SSL, backups, and diagnostics become one-off scripts.</div></li>
+        </ul>
+      </article>
+      <article class="compare-card reveal" style="--d:2">
+        <span class="tag tag-green">WPFY</span>
+        <h3>Per-site Compose projects</h3>
+        <ul>
+          <li><span class="li-check" aria-hidden="true">✓</span><div><strong>No host-level Nginx, PHP, MariaDB, or Redis</strong>The Ubuntu host stays clean; services run in containers.</div></li>
+          <li><span class="li-check" aria-hidden="true">✓</span><div><strong>Per-site PHP selection</strong>Run PHP 7.4 through 8.4 side by side where supported.</div></li>
+          <li><span class="li-check" aria-hidden="true">✓</span><div><strong>Private per-site network</strong>Dedicated database, volumes, credentials, and Unix UID per site.</div></li>
+          <li><span class="li-check" aria-hidden="true">✓</span><div><strong>Repeatable commands</strong>Create, SSL, backup, restore, and remove sites with retry-safe CLI workflows.</div></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="architecture" class="section-navy section-pad" aria-labelledby="arch-title">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <h2 id="arch-title">Architecture</h2>
+      <p class="lede">Internet traffic enters a shared Traefik edge proxy, routes across the WPFY network, and terminates in isolated per-site Compose projects.</p>
+    </div>
+    <div class="arch-diagram reveal" style="--d:1">
+      <div class="arch-layer">
+        <p class="arch-layer-label">Edge</p>
+        <p class="arch-layer-title">Shared Traefik proxy · Let's Encrypt · HTTP routing</p>
+      </div>
+      <div class="arch-connector" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v12M8 12l-3-3M8 12l3-3"/></svg></div>
+      <div class="arch-layer">
+        <p class="arch-layer-label">Routing</p>
+        <p class="arch-layer-title">WPFY routing network</p>
+      </div>
+      <div class="arch-connector" aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v12M8 12l-3-3M8 12l3-3"/></svg></div>
+      <div class="arch-layer">
+        <p class="arch-layer-label">Sites</p>
+        <div class="arch-sites">
+          <article class="arch-site">
+            <h4>example.com</h4>
+            <div class="arch-chips">
+              <span class="arch-chip">Nginx</span>
+              <span class="arch-chip">PHP-FPM</span>
+              <span class="arch-chip">MariaDB</span>
+              <span class="arch-chip opt">Redis</span>
+              <span class="arch-chip opt">SFTP</span>
+              <span class="arch-chip">Private network</span>
+              <span class="arch-chip">Unique UID</span>
+            </div>
+          </article>
+          <article class="arch-site">
+            <h4>client.example</h4>
+            <div class="arch-chips">
+              <span class="arch-chip">Nginx</span>
+              <span class="arch-chip">PHP-FPM</span>
+              <span class="arch-chip">MariaDB</span>
+              <span class="arch-chip opt">Redis</span>
+              <span class="arch-chip opt">SFTP</span>
+              <span class="arch-chip">Private network</span>
+              <span class="arch-chip">Unique UID</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="commands" class="section-pad" aria-labelledby="commands-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2 id="commands-title">Command surface</h2>
+      <p class="lede">Flat operator commands are primary where exact equivalents exist. Grouped <code>wpfy site</code> and <code>wpfy stack</code> commands remain for compatibility.</p>
+    </div>
+    <div class="cmd-groups reveal" style="--d:1">
+      <div class="cmd-tabs" role="tablist" aria-label="Command groups">
+        <button type="button" class="cmd-tab" role="tab" id="tab-provision" aria-selected="true" aria-controls="panel-provision">Provision</button>
+        <button type="button" class="cmd-tab" role="tab" id="tab-operate" aria-selected="false" aria-controls="panel-operate">Operate</button>
+        <button type="button" class="cmd-tab" role="tab" id="tab-protect" aria-selected="false" aria-controls="panel-protect">Protect</button>
+        <button type="button" class="cmd-tab" role="tab" id="tab-observe" aria-selected="false" aria-controls="panel-observe">Observe</button>
+        <button type="button" class="cmd-tab" role="tab" id="tab-integrate" aria-selected="false" aria-controls="panel-integrate">Integrate</button>
+      </div>
+      <div class="cmd-panel is-active" role="tabpanel" id="panel-provision" aria-labelledby="tab-provision">
+        <h3>Provision sites and certificates</h3>
+        <pre class="code-block">wpfy run example.com --wp
+wpfy site ssl example.com --letsencrypt
+wpfy site list</pre>
+      </div>
+      <div class="cmd-panel" role="tabpanel" id="panel-operate" aria-labelledby="tab-operate" hidden>
+        <h3>Operate runtimes and configuration</h3>
+        <pre class="code-block">wpfy up example.com
+wpfy down example.com
+wpfy exec example.com app -- php -v
+wpfy config example.com
+wpfy refresh example.com --restart</pre>
+      </div>
+      <div class="cmd-panel" role="tabpanel" id="panel-protect" aria-labelledby="tab-protect" hidden>
+        <h3>Back up, restore, and retain</h3>
+        <pre class="code-block">wpfy backup example.com
+wpfy backup prune example.com --keep 7
+wpfy backup schedule daily --time 02:30 --s3
+wpfy restore example.com --latest
+wpfy backup edge</pre>
+      </div>
+      <div class="cmd-panel" role="tabpanel" id="panel-observe" aria-labelledby="tab-observe" hidden>
+        <h3>Inspect health, logs, and security</h3>
+        <pre class="code-block">wpfy healthcheck all
+wpfy debug example.com
+wpfy log show example.com --nginx -f
+wpfy motd
+wpfy secure example.com</pre>
+      </div>
+      <div class="cmd-panel" role="tabpanel" id="panel-integrate" aria-labelledby="tab-integrate" hidden>
+        <h3>Integrate WordPress, access, and services</h3>
+        <pre class="code-block">wpfy wp example.com plugin list
+wpfy sftp example.com --enable
+wpfy cron status
+wpfy smtp status
+wpfy dns cloudflare status</pre>
+      </div>
+      <noscript>
+        <div class="cmd-panel is-active">
+          <h3>All command groups (JavaScript disabled)</h3>
+          <pre class="code-block"># Provision
+wpfy run example.com --wp
+wpfy site ssl example.com --letsencrypt
+wpfy site list
+
+# Operate
+wpfy up example.com
+wpfy down example.com
+wpfy exec example.com app -- php -v
+wpfy config example.com
+wpfy refresh example.com --restart
+
+# Protect
+wpfy backup example.com
+wpfy backup prune example.com --keep 7
+wpfy backup schedule daily --time 02:30 --s3
+wpfy restore example.com --latest
+wpfy backup edge
+
+# Observe
+wpfy healthcheck all
+wpfy debug example.com
+wpfy log show example.com --nginx -f
+wpfy motd
+wpfy secure example.com
+
+# Integrate
+wpfy wp example.com plugin list
+wpfy sftp example.com --enable
+wpfy cron status
+wpfy smtp status
+wpfy dns cloudflare status</pre>
+        </div>
+      </noscript>
+    </div>
+  </div>
+</section>
+
+<section id="capabilities" class="section-green section-pad" aria-labelledby="cap-title">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <h2 id="cap-title">Product capabilities</h2>
+      <p class="lede">Four operational areas that define how WPFY runs WordPress on a VPS.</p>
+    </div>
+
+    <article class="cap-band reveal">
+      <div class="cap-copy">
+        <h3>Per-site isolation</h3>
+        <p>Each managed site is one Compose project with a private network, dedicated database and volumes, unique Unix UID, and unprivileged Nginx.</p>
+        <ul>
+          <li>One Compose project per site</li>
+          <li>PHP 7.4 through 8.4 where currently supported</li>
+          <li>Designed to reduce cross-site blast radius</li>
         </ul>
       </div>
-      <div class="compare-card reveal" style="--d:2">
-        <span class="tag tag-teal">The WPFY way</span>
+      <div class="cap-media">
+        <pre class="code-block">wpfy run client-a.com --wp --php 8.3
+wpfy run client-b.com --wp --php 7.4 --wpredis
+wpfy site status client-a.com</pre>
+      </div>
+    </article>
+
+    <article class="cap-band flip reveal" style="--d:1">
+      <div class="cap-copy">
+        <h3>SSL and DNS safety</h3>
+        <p>Let's Encrypt issuance runs only after DNS/IP preflight passes. Cloudflare proxy detection helps avoid failed issuance and rate-limit problems.</p>
         <ul>
-          <li><span class="li-check">&check;</span><div><strong>Docker-first</strong>No host-level Nginx, PHP, MariaDB, or Redis. The host stays clean.</div></li>
-          <li><span class="li-check">&check;</span><div><strong>Per-site isolation</strong>Sites never share PHP, database, cache, writable volumes, or networks.</div></li>
-          <li><span class="li-check">&check;</span><div><strong>CLI-driven workflows</strong>Create, SSL, backup, restore, diagnostics, and SFTP are retry-safe commands.</div></li>
-          <li><span class="li-check">&check;</span><div><strong>Safer SSL</strong>Certificates issue only after a DNS/IP preflight confirms the domain points at your server.</div></li>
+          <li>DNS/IP preflight before ACME</li>
+          <li>Traefik-managed certificates</li>
+          <li>Cloudflare-only wildcard SSL</li>
         </ul>
       </div>
-    </div>
+      <div class="cap-media">
+        <pre class="code-block">wpfy site ssl example.com --letsencrypt
+wpfy dns cloudflare set
+wpfy config example.com --dns cloudflare</pre>
+      </div>
+    </article>
+
+    <article class="cap-band reveal" style="--d:2">
+      <div class="cap-copy">
+        <h3>Backup and recovery</h3>
+        <p>Verified file and database archives with local retention, S3-compatible remote lifecycle, scheduled all-site backups, and Traefik edge backup.</p>
+        <ul>
+          <li>Explicit retention and prune controls</li>
+          <li>Remote list, restore, delete, and prune via WPFY</li>
+          <li>Validation before live restore mutation</li>
+        </ul>
+      </div>
+      <div class="cap-media">
+        <pre class="code-block">wpfy backup example.com --s3
+wpfy backup remote list example.com
+wpfy restore example.com --latest
+wpfy backup edge --s3</pre>
+      </div>
+    </article>
+
+    <article class="cap-band flip reveal" style="--d:3">
+      <div class="cap-copy">
+        <h3>Operations and access</h3>
+        <p>Health checks, structured debug output, container logs, WP-CLI, scoped SFTP, cron timers, and SMTP configuration with explicit test sends.</p>
+        <ul>
+          <li>Sanitized config display via <code>wpfy config</code></li>
+          <li>Scoped SFTP sidecar per site</li>
+          <li>Safe refresh workflows with optional restart</li>
+        </ul>
+      </div>
+      <div class="cap-media">
+        <pre class="code-block">wpfy healthcheck all
+wpfy wp example.com plugin list
+wpfy sftp example.com --enable
+wpfy smtp test --to ops@example.com</pre>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- Ecosystem: the modern WordPress stack -->
-<section id="stack" class="eco-section" aria-labelledby="eco-title">
-  <div class="eco-sky" aria-hidden="true">
-    <span class="eco-sky-cloud c1">
-      <svg viewBox="0 0 150 70" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M28 58c-12 0-22-7-22-17 0-9 8-15 16-15 2-9 11-16 22-16 10 0 18 5 21 13 2-1 5-2 8-2 10 0 18 7 18 16 0 11-10 21-24 21H28Z"/></svg>
-    </span>
-    <span class="eco-sky-cloud c2">
-      <svg viewBox="0 0 170 80" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M34 66c-14 0-26-8-26-19 0-10 9-17 18-17 3-11 13-19 26-19 11 0 21 6 24 15 3-2 6-3 10-3 11 0 20 8 20 18 0 13-11 25-27 25H34Z"/></svg>
-    </span>
-  </div>
-  <div class="wrap">
-    <div class="eco-head reveal">
-      <h2 id="eco-title">Ecosystem</h2>
-      <p class="eco-sub">Modern WordPress stack</p>
-      <p class="lede">Traefik is the only shared component; every site runs its own isolated services, all orchestrated from a single CLI.</p>
-    </div>
-    <div class="eco-diagram reveal" style="--d:1">
-      <svg class="eco-pipes" aria-hidden="true" focusable="false"></svg>
-      <div class="eco-col eco-col-l">
-        <div class="eco-box box-blue">
-          <h3>Shared edge</h3>
-          <div class="eco-items" role="group" aria-label="Shared edge components">
-            <span class="eco-item">
-              <img src="assets/icons/traefikproxy.svg" alt="" width="20" height="20" loading="lazy">
-              Traefik
-            </span>
-            <span class="eco-item">
-              <img src="assets/icons/letsencrypt.svg" alt="" width="20" height="20" loading="lazy">
-              Let's Encrypt
-            </span>
-          </div>
-        </div>
-        <div class="eco-box box-teal">
-          <h3>Site runtime</h3>
-          <div class="eco-items" role="group" aria-label="Per-site runtime components">
-            <span class="eco-item">
-              <img src="assets/icons/wordpress.svg" alt="" width="20" height="20" loading="lazy">
-              WordPress
-            </span>
-            <span class="eco-item">
-              <img src="assets/icons/nginx.svg" alt="" width="20" height="20" loading="lazy">
-              Nginx
-            </span>
-            <span class="eco-item">
-              <img src="assets/icons/php.svg" alt="" width="20" height="20" loading="lazy">
-              PHP-FPM
-            </span>
-          </div>
-        </div>
-        <div class="eco-box box-yellow">
-          <h3>Data &amp; cache</h3>
-          <div class="eco-items" role="group" aria-label="Per-site data components">
-            <span class="eco-item">
-              <img src="assets/icons/mariadb.svg" alt="" width="20" height="20" loading="lazy">
-              MariaDB
-            </span>
-            <span class="eco-item">
-              <img src="assets/icons/redis.svg" alt="" width="20" height="20" loading="lazy">
-              Redis
-            </span>
-          </div>
-        </div>
-      </div>
-      <div class="eco-center">
-        <span class="eco-center-label">Your Ubuntu VPS</span>
-        <div class="eco-node" aria-hidden="true">
-          <div class="eco-node-bar">
-            <span class="term-dot d1"></span><span class="term-dot d2"></span><span class="term-dot d3"></span>
-          </div>
-          <div class="eco-node-body"><span class="t-prompt">$</span> wpfy<span class="t-caret"></span></div>
-        </div>
-        <span class="eco-center-sub">One CLI runs it all</span>
-      </div>
-      <div class="eco-col eco-col-r">
-        <div class="eco-box box-cream">
-          <h3>Host</h3>
-          <div class="eco-items" role="group" aria-label="Host components">
-            <span class="eco-item">
-              <img src="assets/icons/ubuntu.svg" alt="" width="20" height="20" loading="lazy">
-              Ubuntu
-            </span>
-            <span class="eco-item">
-              <img src="assets/icons/docker.svg" alt="" width="20" height="20" loading="lazy">
-              Docker Engine
-            </span>
-            <span class="eco-item">
-              <img src="assets/icons/docker.svg" alt="" width="20" height="20" loading="lazy">
-              Compose
-            </span>
-          </div>
-        </div>
-        <div class="eco-box box-red">
-          <h3>Access</h3>
-          <div class="eco-items" role="group" aria-label="Access components">
-            <span class="eco-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21V5"/><path d="M5 8l3-3 3 3"/><path d="M16 3v16"/><path d="M19 16l-3 3-3-3"/></svg>
-              SFTP
-            </span>
-            <span class="eco-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10l3 2-3 2"/><path d="M13 15h4"/></svg>
-              WP-CLI
-            </span>
-          </div>
-        </div>
-        <div class="eco-box box-blue">
-          <h3>Safety nets</h3>
-          <div class="eco-items" role="group" aria-label="Safety components">
-            <span class="eco-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"/><path d="M10 13h4"/></svg>
-              Backups
-            </span>
-            <span class="eco-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
-              Restore
-            </span>
-            <span class="eco-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9-6-18-3 9H2"/></svg>
-              Diagnostics
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Features -->
-<section id="features" class="section-sky" aria-labelledby="features-title">
-  <span class="edge-doodle" style="right:6%;width:150px" aria-hidden="true">
-    <svg viewBox="0 0 170 80" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M34 66c-14 0-26-8-26-19 0-10 9-17 18-17 3-11 13-19 26-19 11 0 21 6 24 15 3-2 6-3 10-3 11 0 20 8 20 18 0 13-11 25-27 25H34Z"/></svg>
-  </span>
-  <span class="edge-doodle edge-icon" style="left:8%;width:46px" aria-hidden="true">
-    <img src="assets/icons/docker.svg" alt="" width="46" height="46" loading="lazy">
-  </span>
-  <span class="drift d-icon" style="top:6%;left:3%;width:56px" aria-hidden="true">
-    <img src="assets/icons/wordpress.svg" alt="" width="56" height="56" loading="lazy">
-  </span>
-  <span class="drift d-lock" style="bottom:8%;right:3%;width:44px" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="#fff" stroke="#383838" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none"/></svg>
-  </span>
+<section id="quick-start" class="section-pad" aria-labelledby="qs-title">
   <div class="wrap">
     <div class="section-head reveal">
-      <h2 id="features-title">Everything a WordPress VPS needs, as commands</h2>
-      <p class="lede">WordOps/Webinoly-style convenience, rebuilt around Docker isolation.</p>
+      <h2 id="qs-title">Quick-start workflow</h2>
+      <p class="lede">Three steps from a fresh VPS to a verified managed site. Full procedures live in the documentation.</p>
     </div>
-    <div class="grid grid-4">
-      <article class="card reveal" style="--d:0">
-        <div class="card-top">
-          <span class="tag tag-yellow"><svg class="tag-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v11"/><path d="M8 11l4 4 4-4"/><path d="M5 20h14"/></svg>Installer</span>
-        </div>
-        <h3>Ubuntu installer</h3>
-        <p>One scripted install on a fresh VPS: Docker Engine, the wpfy CLI, and the shared runtime, with staged steps and dry-run support.</p>
-        <button class="cmd-chip" type="button" data-copy="install.sh">install.sh</button>
+    <div class="steps">
+      <article class="step-card reveal" style="--d:0">
+        <span class="step-num">Step 1</span>
+        <h3>Prepare a fresh VPS</h3>
+        <p>Supported Ubuntu environment, sudo/root access, domain DNS pointing at the server, and outbound network access.</p>
       </article>
-      <article class="card reveal" style="--d:1">
-        <div class="card-top">
-          <span class="tag tag-teal"><svg class="tag-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1"/></svg>Isolation</span>
+      <article class="step-card reveal" style="--d:1">
+        <span class="step-num">Step 2</span>
+        <h3>Install and create a site</h3>
+        <p>Run the installer, then create your first WordPress site with a flat command.</p>
+        <pre class="code-block">curl -fsSL https://raw.githubusercontent.com/wpfyorg/wpfy/main/install.sh | sudo bash
+wpfy run example.com --wp</pre>
+        <div class="install-warning" role="note">
+          <strong>Mutable reference:</strong>
+          <span>The curl command above fetches from the <code>main</code> branch. Download and review the script first, or pin <code>WPFY_REF</code> and <code>WPFY_SOURCE_SHA256</code>. <a href="https://docs.wpfy.org/runbooks/fresh-install">Review-first install</a></span>
         </div>
-        <h3>Per-site Compose stacks</h3>
-        <p>Every site is its own Docker Compose project with a private network, volumes, and database. Nothing is shared.</p>
-        <button class="cmd-chip" type="button" data-copy="wpfy site create">wpfy site create</button>
       </article>
-      <article class="card reveal" style="--d:2">
-        <div class="card-top">
-          <span class="tag tag-blue"><svg class="tag-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="6" r="2.5"/><circle cx="19" cy="18" r="2.5"/><path d="M7.3 11l9.4-3.8M7.3 13l9.4 3.8"/></svg>Routing</span>
-        </div>
-        <h3>Traefik edge proxy</h3>
-        <p>A single shared Traefik instance routes traffic to each site's containers, with no broad write access to site data.</p>
-        <button class="cmd-chip" type="button" data-copy="wpfy stack install">wpfy stack install</button>
-      </article>
-      <article class="card reveal" style="--d:3">
-        <div class="card-top">
-          <span class="tag tag-yellow"><svg class="tag-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.3-3 7.4-7 8.5-4-1.1-7-4.2-7-8.5V6l7-3Z"/><path d="M9 12l2 2 4-4"/></svg>SSL</span>
-        </div>
-        <h3>SSL DNS/IP preflight</h3>
-        <p>Let's Encrypt issuance is opt-in and gated: wpfy verifies DNS resolution and public IP match before requesting a certificate.</p>
-        <button class="cmd-chip" type="button" data-copy="wpfy site ssl">wpfy site ssl</button>
-      </article>
-      <article class="card reveal" style="--d:0">
-        <div class="card-top">
-          <span class="tag tag-blue"><svg class="tag-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>WordPress</span>
-        </div>
-        <h3>WordPress provisioning</h3>
-        <p>Full WordPress setup per site, with wp-cli available inside each site's container for plugin, theme, and content work.</p>
-        <button class="cmd-chip" type="button" data-copy="wpfy site wp">wpfy site wp</button>
-      </article>
-      <article class="card reveal" style="--d:1">
-        <div class="card-top">
-          <span class="tag tag-teal"><svg class="tag-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="5" rx="1"/><path d="M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"/><path d="M10 13h4"/></svg>Safety</span>
-        </div>
-        <h3>Backup &amp; restore</h3>
-        <p>Create per-site backup archives and restore them with a command. Backups are kept private, never world-readable.</p>
-        <button class="cmd-chip" type="button" data-copy="wpfy site backup">wpfy site backup</button>
-      </article>
-      <article class="card reveal" style="--d:2">
-        <div class="card-top">
-          <span class="tag tag-yellow"><svg class="tag-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9-6-18-3 9H2"/></svg>Health</span>
-        </div>
-        <h3>Diagnostics</h3>
-        <p>Structured checks across Docker, Traefik, and every managed site, plus per-site status, info, and log inspection.</p>
-        <button class="cmd-chip" type="button" data-copy="wpfy debug">wpfy debug</button>
-      </article>
-      <article class="card reveal" style="--d:3">
-        <div class="card-top">
-          <span class="tag tag-blue"><svg class="tag-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21V5"/><path d="M5 8l3-3 3 3"/><path d="M16 3v16"/><path d="M19 16l-3 3-3-3"/></svg>Access</span>
-        </div>
-        <h3>SFTP lifecycle</h3>
-        <p>Enable, inspect, and manage per-site SFTP access so each site gets its own scoped file transfer entry point.</p>
-        <button class="cmd-chip" type="button" data-copy="wpfy sftp">wpfy sftp</button>
+      <article class="step-card reveal" style="--d:2">
+        <span class="step-num">Step 3</span>
+        <h3>Operate and verify</h3>
+        <p>Confirm site state and run operator health checks before routing production traffic.</p>
+        <pre class="code-block">wpfy site status example.com
+wpfy healthcheck all
+wpfy debug example.com</pre>
+        <p style="margin-top:0.75rem;font-size:0.875rem"><a class="btn btn-ghost" href="https://docs.wpfy.org/getting-started/introduction">Getting-started guide →</a></p>
       </article>
     </div>
   </div>
-  <span class="edge-doodle edge-doodle-b" style="left:8%;width:140px" aria-hidden="true">
-    <svg viewBox="0 0 150 70" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M28 58c-12 0-22-7-22-17 0-9 8-15 16-15 2-9 11-16 22-16 10 0 18 5 21 13 2-1 5-2 8-2 10 0 18 7 18 16 0 11-10 21-24 21H28Z"/></svg>
-  </span>
-  <span class="edge-doodle edge-doodle-b edge-icon" style="right:14%;width:44px" aria-hidden="true">
-    <img src="assets/icons/nginx.svg" alt="" width="44" height="44" loading="lazy">
-  </span>
 </section>
 
-<!-- How it works -->
-<section id="how-it-works" aria-labelledby="how-title">
+<section id="users" class="section-stone section-pad-sm" aria-labelledby="users-title">
   <div class="wrap">
     <div class="section-head reveal">
-      <h2 id="how-title">From fresh VPS to managed WordPress in three steps</h2>
+      <h2 id="users-title">Intended users</h2>
+      <p class="lede">WPFY is built for operators who manage their own infrastructure — not for untrusted multi-tenant hosting without independent review.</p>
     </div>
-    <div class="grid grid-3">
-      <article class="card step-card reveal" style="--d:0">
-        <span class="step-num" aria-hidden="true">1</span>
-        <h3>Install WPFY</h3>
-        <p>Run the installer on a fresh Ubuntu VPS. It sets up Docker and the wpfy CLI, then verify with:</p>
-        <pre class="code-well"><span class="t-prompt">$</span> wpfy --help</pre>
+    <div class="who-grid">
+      <article class="who-card reveal" style="--d:0">
+        <h3>WordPress agencies</h3>
+        <p>Run client sites on one VPS with per-site isolation and scoped SFTP handoff.</p>
       </article>
-      <article class="card step-card reveal" style="--d:1">
-        <span class="step-num" aria-hidden="true">2</span>
-        <h3>Create a site</h3>
-        <p>Provision an isolated WordPress stack (Compose project, network, database, and volumes) in one command:</p>
-        <pre class="code-well"><span class="t-prompt">$</span> wpfy site create example.com --wp
-<span class="t-out"># add -le for SSL with DNS/IP preflight</span></pre>
+      <article class="who-card reveal" style="--d:1">
+        <h3>Freelance developers</h3>
+        <p>Provision sites with repeatable commands and keep root access to yourself.</p>
       </article>
-      <article class="card step-card reveal" style="--d:2">
-        <span class="step-num" aria-hidden="true">3</span>
-        <h3>Manage from the CLI</h3>
-        <p>SSL, backups, restore, diagnostics, and SFTP are all first-class commands:</p>
-        <pre class="code-well"><span class="t-prompt">$</span> wpfy site status example.com
-<span class="t-prompt">$</span> wpfy site backup example.com
-<span class="t-prompt">$</span> wpfy debug</pre>
+      <article class="who-card reveal" style="--d:2">
+        <h3>VPS operators</h3>
+        <p>Replace ad-hoc scripts with a consistent CLI for stack and site lifecycle.</p>
+      </article>
+      <article class="who-card reveal" style="--d:3">
+        <h3>Technical self-hosters</h3>
+        <p>Self-host WordPress with Docker isolation and explicit backup workflows.</p>
       </article>
     </div>
   </div>
 </section>
 
-<!-- Who is it for -->
-<section id="who" class="section-sky" aria-labelledby="who-title">
-  <span class="edge-doodle" style="left:6%;width:140px" aria-hidden="true">
-    <svg viewBox="0 0 150 70" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M28 58c-12 0-22-7-22-17 0-9 8-15 16-15 2-9 11-16 22-16 10 0 18 5 21 13 2-1 5-2 8-2 10 0 18 7 18 16 0 11-10 21-24 21H28Z"/></svg>
-  </span>
-  <span class="edge-doodle edge-icon" style="right:7%;width:44px" aria-hidden="true">
-    <img src="assets/icons/wordpress.svg" alt="" width="44" height="44" loading="lazy">
-  </span>
-  <span class="drift d-cloud" style="top:8%;left:3%;width:120px" aria-hidden="true">
-    <svg viewBox="0 0 150 70" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M28 58c-12 0-22-7-22-17 0-9 8-15 16-15 2-9 11-16 22-16 10 0 18 5 21 13 2-1 5-2 8-2 10 0 18 7 18 16 0 11-10 21-24 21H28Z"/></svg>
-  </span>
-  <span class="drift d-cloud" style="bottom:6%;right:5%;width:150px" aria-hidden="true">
-    <svg viewBox="0 0 170 80" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M34 66c-14 0-26-8-26-19 0-10 9-17 18-17 3-11 13-19 26-19 11 0 21 6 24 15 3-2 6-3 10-3 11 0 20 8 20 18 0 13-11 25-27 25H34Z"/></svg>
-  </span>
+<section id="boundaries" class="section-pad" aria-labelledby="boundaries-title">
   <div class="wrap">
     <div class="section-head reveal">
-      <h2 id="who-title">Who is it for?</h2>
-      <p class="lede">Docker-grade isolation for everyone who runs WordPress on their own servers.</p>
+      <h2 id="boundaries-title">Know the boundaries before you install</h2>
+      <p class="lede">Honest limits are part of the product. WPFY is open source under AGPL-3.0 — not a hosting company or graphical control panel.</p>
     </div>
-    <div class="grid grid-3 who-grid">
-      <div class="who-card reveal" style="--d:0">
-        <span class="who-doodle" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="#ffde00" stroke="#383838" stroke-width="2" stroke-linejoin="round"><rect x="3" y="8" width="8" height="13"/><rect x="11" y="3" width="10" height="18"/><path d="M14 8h4M14 12.5h4M14 17h4" fill="none" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </span>
-        <span class="tag tag-yellow">Agencies &amp; studios</span>
-        <p>Run every client on one VPS. One site's plugin meltdown never touches the others.</p>
-      </div>
-      <div class="who-card reveal" style="--d:1">
-        <span class="who-doodle" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="#53dbc9" stroke="#383838" stroke-width="2" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M5 20a7 7 0 0 1 14 0Z"/></svg>
-        </span>
-        <span class="tag tag-teal">Freelance developers</span>
-        <p>Provision a client site in minutes, hand over scoped SFTP, and keep root to yourself.</p>
-      </div>
-      <div class="who-card reveal" style="--d:2">
-        <span class="who-doodle" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="#97d4ff" stroke="#383838" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01" fill="none" stroke-width="2.6" stroke-linecap="round"/></svg>
-        </span>
-        <span class="tag tag-blue">Self-hosters</span>
-        <p>Leave managed-WordPress pricing behind without giving up sane, retry-safe workflows.</p>
-      </div>
+    <div class="boundaries-table-wrap reveal" style="--d:1">
+      <table class="boundaries-table">
+        <thead>
+          <tr>
+            <th scope="col">Topic</th>
+            <th scope="col">Status</th>
+            <th scope="col">Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Release status</td>
+            <td><span class="status-pill status-limited">Beta / RC</span></td>
+            <td>v1.0.0-rc1 documentation describes implemented behavior; validate on a disposable VPS first.</td>
+          </tr>
+          <tr>
+            <td>Platform support</td>
+            <td><span class="status-pill status-limited">Ubuntu-first</span></td>
+            <td>Installer targets supported Ubuntu releases; not every Linux distribution.</td>
+          </tr>
+          <tr>
+            <td>Security review</td>
+            <td><span class="status-pill status-deferred">Not yet</span></td>
+            <td>No independent security audit yet; multi-tenant hosting of untrusted parties remains out of scope.</td>
+          </tr>
+          <tr>
+            <td>Host migration</td>
+            <td><span class="status-pill status-deferred">Not implemented</span></td>
+            <td><code>wpfy stack migrate</code> is not implemented in Docker-first v1.</td>
+          </tr>
+          <tr>
+            <td>Wildcard SSL</td>
+            <td><span class="status-pill status-limited">Cloudflare only</span></td>
+            <td>Wildcard certificates require Cloudflare DNS credentials; not every DNS provider.</td>
+          </tr>
+          <tr>
+            <td>Helper images</td>
+            <td><span class="status-pill status-limited">Pull-only</span></td>
+            <td>phpMyAdmin, Adminer, and Composer helpers prepare pinned images; they are not exposed public dashboards.</td>
+          </tr>
+          <tr>
+            <td>MySQLTuner</td>
+            <td><span class="status-pill status-deferred">Unavailable</span></td>
+            <td>Skipped until a vetted pinned image exists.</td>
+          </tr>
+          <tr>
+            <td>Backups</td>
+            <td><span class="status-pill status-implemented">Implemented</span></td>
+            <td>Keep off-server copies for production; destructive restore requires operator attention.</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  <span class="edge-doodle edge-doodle-b edge-icon" style="left:9%;width:44px" aria-hidden="true">
-    <svg viewBox="0 0 24 24" fill="#97d4ff" stroke="#383838" stroke-width="2" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01" fill="none" stroke-width="2.6" stroke-linecap="round"/></svg>
-  </span>
-  <span class="edge-doodle edge-doodle-b" style="right:7%;width:150px" aria-hidden="true">
-    <svg viewBox="0 0 170 80" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M34 66c-14 0-26-8-26-19 0-10 9-17 18-17 3-11 13-19 26-19 11 0 21 6 24 15 3-2 6-3 10-3 11 0 20 8 20 18 0 13-11 25-27 25H34Z"/></svg>
-  </span>
 </section>
 
-<!-- Use cases -->
-<section id="use-cases" aria-labelledby="uc-title">
-  <span class="drift d-icon" style="top:10%;right:4%;width:54px" aria-hidden="true">
-    <img src="assets/icons/letsencrypt.svg" alt="" width="54" height="54" loading="lazy">
-  </span>
-  <span class="drift d-icon" style="bottom:12%;left:3%;width:60px" aria-hidden="true">
-    <img src="assets/icons/docker.svg" alt="" width="60" height="60" loading="lazy">
-  </span>
+<section class="cta-band section-pad" id="cta" aria-labelledby="cta-title">
   <div class="wrap">
-    <div class="section-head reveal">
-      <h2 id="uc-title">Use cases</h2>
-    </div>
-    <div class="uc-row reveal">
-      <div class="uc-copy">
-        <h3>Host a fleet of client sites</h3>
-        <p>Each site is its own Compose stack with a private network, database, and volumes. Hand every client scoped SFTP access and keep the server yours.</p>
-        <a class="btn" href="#how-it-works">How it works</a>
-      </div>
-      <pre class="code-well uc-well"><span class="t-prompt">$</span> wpfy site create client-a.com --wp -le
-<span class="t-prompt">$</span> wpfy site create client-b.com --wp --php 8.3
-<span class="t-prompt">$</span> wpfy sftp --enable client-a.com</pre>
-    </div>
-    <div class="uc-row uc-flip reveal">
-      <div class="uc-copy">
-        <h3>Migrate and recover without fear</h3>
-        <p>Archive any site to a private backup and bring it back with one command. SSL only issues after DNS provably points at your server.</p>
-        <a class="btn" href="https://github.com/wpfyorg/wpfy/blob/main/docs/SECURITY.md">Security model</a>
-      </div>
-      <pre class="code-well uc-well"><span class="t-prompt">$</span> wpfy site backup example.com
-<span class="t-prompt">$</span> wpfy site restore example.com example-backup.tar.gz
-<span class="t-prompt">$</span> wpfy site ssl example.com</pre>
+    <h2 id="cta-title" class="reveal">Test WPFY on a disposable Ubuntu VPS</h2>
+    <p class="reveal" style="--d:1">Read the installation guide, inspect the source, and share feedback from real deployments.</p>
+    <div class="cta-actions reveal" style="--d:2">
+      <a class="btn btn-blue" href="https://docs.wpfy.org/runbooks/fresh-install">Read the installation guide</a>
+      <a class="btn" href="https://github.com/wpfyorg/wpfy">View the source on GitHub</a>
+      <a class="btn" href="https://forum.wpfy.org">Join the forum</a>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-band" id="beta" aria-labelledby="beta-title" style="padding-top:88px;padding-bottom:88px">
-  <span class="cta-cloud" style="left:6%;width:130px" aria-hidden="true">
-    <svg viewBox="0 0 150 70" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M28 58c-12 0-22-7-22-17 0-9 8-15 16-15 2-9 11-16 22-16 10 0 18 5 21 13 2-1 5-2 8-2 10 0 18 7 18 16 0 11-10 21-24 21H28Z"/></svg>
-  </span>
-  <span class="cta-cloud" style="right:7%;width:160px" aria-hidden="true">
-    <svg viewBox="0 0 170 80" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M34 66c-14 0-26-8-26-19 0-10 9-17 18-17 3-11 13-19 26-19 11 0 21 6 24 15 3-2 6-3 10-3 11 0 20 8 20 18 0 13-11 25-27 25H34Z"/></svg>
-  </span>
-  <h2 id="beta-title" class="reveal">Try the WPFY beta</h2>
-  <p class="reveal" style="--d:1">Spin up a fresh Ubuntu VPS, run the installer, and create your first isolated WordPress site in minutes. Feedback from real deployments moves the beta forward.</p>
-  <div class="cta-actions reveal" style="--d:2">
-    <a class="btn btn-ink" href="https://github.com/wpfyorg/wpfy">View on GitHub</a>
-    <a class="btn btn-blue" href="https://forum.wpfy.org">Join the forum</a>
-    <a class="btn" href="https://github.com/wpfyorg/wpfy/issues">Report issues &amp; feedback</a>
-  </div>
-</section>
-
-<!-- Subscribe -->
-<section class="subscribe-band" id="subscribe" aria-labelledby="sub-title">
-  <span class="edge-doodle" style="left:5%;width:120px" aria-hidden="true">
-    <svg viewBox="0 0 150 70" fill="#fff" stroke="#383838" stroke-width="2.5"><path d="M28 58c-12 0-22-7-22-17 0-9 8-15 16-15 2-9 11-16 22-16 10 0 18 5 21 13 2-1 5-2 8-2 10 0 18 7 18 16 0 11-10 21-24 21H28Z"/></svg>
-  </span>
-  <span class="edge-doodle edge-icon" style="right:7%;width:44px" aria-hidden="true">
-    <img src="assets/icons/letsencrypt.svg" alt="" width="44" height="44" loading="lazy">
-  </span>
-  <div class="wrap sub-inner">
-    <div class="sub-copy reveal">
-      <h2 id="sub-title">Stay in the loop</h2>
-      <p>Release notes, new guides, and beta milestones. No spam, unsubscribe anytime.</p>
+<section class="updates-band" id="updates" aria-labelledby="updates-title">
+  <div class="wrap updates-inner">
+    <div>
+      <h2 id="updates-title">Release updates</h2>
+      <p>Email subscription is not wired yet. Follow releases on GitHub or the documentation site.</p>
     </div>
-    <!-- Placeholder form: no backend wired yet; main.js swaps in a local confirmation. -->
-    <form class="sub-form reveal" style="--d:1" action="#" method="post" data-placeholder>
-      <label class="sr-only" for="sub-email">Email address</label>
-      <input id="sub-email" name="email" type="email" required placeholder="you@yourserver.com" autocomplete="email">
-      <button class="btn btn-ink" type="submit">Subscribe</button>
-      <p class="sub-privacy">
-        <label for="sub-privacy">
-          <input id="sub-privacy" name="privacy" type="checkbox" required value="1">
-          I agree to the <a href="/legal/privacy">Privacy Policy</a>.
-        </label>
-      </p>
-    </form>
-    <p class="sub-status" aria-live="polite" hidden>Thanks! You're on the list.</p>
+    <div class="updates-disabled" aria-disabled="true">
+      <label class="sr-only" for="updates-email">Email address</label>
+      <input id="updates-email" type="email" placeholder="you@example.com" disabled>
+      <button type="button" class="btn" disabled>Coming soon</button>
+    </div>
   </div>
 </section>
 
 </main>
 
 <footer class="site-footer">
-  <div class="wpfy-wrap wpfy-footer-inner">
-    <div class="wpfy-footer-grid">
-      <div class="wpfy-footer-col">
-        <a class="logo" href="#" aria-label="WPFY home">wpfy<span class="mark">_</span></a>
-        <p class="wpfy-footer-meta">Docker-first WordPress server management for Ubuntu VPS.<br>Beta software, test on a fresh VPS first.<br>Licensed under AGPL-3.0.</p>
-      </div>
-      <div class="wpfy-footer-col">
-        <p class="wpfy-footer-col-title">Product</p>
-        <ul class="wpfy-footer-links">
-          <li><a href="https://github.com/wpfyorg/wpfy">GitHub</a></li>
-          <li><a href="https://forum.wpfy.org">Forum</a></li>
-          <li><a href="https://docs.wpfy.org">Docs</a></li>
-          <li><a href="https://github.com/wpfyorg/wpfy/blob/main/docs/SECURITY.md">Security</a></li>
-          <li><a href="https://github.com/wpfyorg/wpfy/blob/main/LICENSE">License (AGPL-3.0)</a></li>
-        </ul>
-      </div>
-      <div class="wpfy-footer-col">
-        <p class="wpfy-footer-col-title">Legal</p>
-        <ul class="wpfy-footer-links">
-          <li><a href="/legal/privacy">Privacy</a></li>
-          <li><a href="/legal/terms">Terms</a></li>
-          <li><a href="/legal/cookies">Cookies</a></li>
-          <li><a href="/legal/affiliate-disclosure">Affiliate</a></li>
-          <li><a href="/legal/disclaimer">Disclaimer</a></li>
-          <li><a href="/legal/refund">Refund</a></li>
-          <li><a href="/legal/community">Community</a></li>
-        </ul>
-      </div>
-      <div class="wpfy-footer-col">
-        <p class="wpfy-footer-col-title">Settings</p>
-        <button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button>
-      </div>
+  <div class="wrap footer-grid">
+    <div>
+      <a class="logo" href="/" aria-label="WPFY home">wpfy<span class="mark">_</span></a>
+      <p class="footer-meta">Docker-first WordPress infrastructure CLI for Ubuntu VPS.<br>Beta / RC software — test on a disposable VPS first.<br>Open source under AGPL-3.0.</p>
     </div>
-    <div class="wpfy-footer-bar">Developed by folks behind <a href="https://bricksgenius.com" target="_blank" rel="noopener">BricksGenius</a>, Hosted on <a href="https://www.vultr.com" target="_blank" rel="noopener">Vultr</a> using <a href="https://wpfy.org">wpfy</a>, built with <a href="https://bricksbuilder.io" target="_blank" rel="noopener">Bricks Builder</a> and Optimised by <a href="https://flyingpress.com" target="_blank" rel="noopener">FlyingPress</a>.</div>
+    <div>
+      <p class="footer-col-title">Product</p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/wpfyorg/wpfy">GitHub</a></li>
+        <li><a href="https://docs.wpfy.org">Docs</a></li>
+        <li><a href="https://forum.wpfy.org">Forum</a></li>
+        <li><a href="https://docs.wpfy.org/reference/security">Security</a></li>
+        <li><a href="https://docs.wpfy.org/releases/v1.0.0-rc1">Releases</a></li>
+        <li><a href="https://github.com/wpfyorg/wpfy/blob/main/LICENSE">License</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Resources</p>
+      <ul class="footer-links">
+        <li><a href="https://docs.wpfy.org/runbooks/fresh-install">Installation</a></li>
+        <li><a href="https://docs.wpfy.org/commands/run">Commands</a></li>
+        <li><a href="https://docs.wpfy.org/reference/architecture">Architecture</a></li>
+        <li><a href="https://docs.wpfy.org/commands/backup">Backup guide</a></li>
+        <li><a href="https://docs.wpfy.org/runbooks/enable-ssl">SSL guide</a></li>
+        <li><a href="https://github.com/wpfyorg/wpfy/blob/main/ROADMAP.md">Roadmap</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Legal</p>
+      <ul class="footer-links">
+        <li><a href="/legal/privacy">Privacy</a></li>
+        <li><a href="/legal/terms">Terms</a></li>
+        <li><a href="/legal/cookies">Cookies</a></li>
+        <li><a href="/legal/disclaimer">Disclaimer</a></li>
+        <li><a href="/legal/affiliate-disclosure">Affiliate disclosure</a></li>
+        <li><a href="/legal/refund">Refund / cancellation</a></li>
+        <li><a href="/legal/community">Community terms</a></li>
+        <li><a href="/legal/comparison-methodology">Comparison methodology</a></li>
+      </ul>
+      <button type="button" class="cookie-settings-link" data-cookie-settings>Cookie settings</button>
+    </div>
   </div>
+  <div class="wrap footer-bar">Developed by folks behind <a href="https://bricksgenius.com" target="_blank" rel="noopener">BricksGenius</a>, Hosted on <a href="https://www.vultr.com" target="_blank" rel="noopener">Vultr</a> using <a href="https://wpfy.org">wpfy</a>, built with <a href="https://bricksbuilder.io" target="_blank" rel="noopener">Bricks Builder</a> and Optimised by <a href="https://flyingpress.com" target="_blank" rel="noopener">FlyingPress</a>.</div>
 </footer>
 
-<script src="assets/main.js?v=7" defer></script>
+<script src="assets/main.js?v=9" defer></script>
 </body>
 </html>

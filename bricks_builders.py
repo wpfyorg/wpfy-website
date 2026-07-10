@@ -116,7 +116,7 @@ def link_list(
     parent: str,
     links: list[tuple[str, str]],
     *,
-    list_class: str = "wpfy-footer-links",
+    list_class: str = "footer-links",
     new_tab: bool = False,
     item_ids: list[str] | None = None,
 ) -> list[dict]:
@@ -143,7 +143,7 @@ def footer_col_title(eid: str, parent: str, text: str) -> dict:
     return el(eid, "text-basic", parent, [], {
         "text": text,
         "tag": "p",
-        "_cssClasses": "wpfy-footer-col-title",
+        "_cssClasses": "footer-col-title",
     })
 
 
@@ -260,14 +260,14 @@ def code_well(well_id: str, parent: str, code: str, *, extra_class: str = "") ->
     })
 
 
-def nav_ul(nav_id: str, parent: str, links: list[tuple[str, str]], *, css_id: str = "wpfy-nav-links") -> list[dict]:
-    """Header nav: ul#wpfy-nav-links with anchor hash + external links."""
+def nav_ul(nav_id: str, parent: str, links: list[tuple[str, str]], *, css_id: str = "nav-links") -> list[dict]:
+    """Header nav: ul with anchor hash + external links."""
     li_ids = [f"hdnv{i:02d}" for i in range(1, len(links) + 1)]
     out: list[dict] = [
         el(nav_id, "div", parent, li_ids, {
             "tag": "ul",
             "_cssId": css_id,
-            "_cssGlobalClasses": ["wpfy-nav-links"],
+            "_cssClasses": "nav-links",
         }, "Nav links"),
     ]
     for i, (label, url) in enumerate(links):

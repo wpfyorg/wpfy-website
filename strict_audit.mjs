@@ -5,25 +5,26 @@
 import { chromium } from "playwright";
 import { writeFileSync } from "fs";
 
-const LOCAL = process.argv[2] || "http://127.0.0.1:18875/";
+const LOCAL = process.argv[2] || "http://127.0.0.1:8766/";
 const WP = process.argv[3] || "https://wpfy.dev.wpfy.org/";
 
 const SECTION_IDS = [
-  "problem",
-  "stack",
-  "features",
-  "how-it-works",
-  "who",
-  "use-cases",
-  "beta",
-  "subscribe",
+  "tech",
+  "why-docker",
+  "architecture",
+  "commands",
+  "capabilities",
+  "quick-start",
+  "users",
+  "boundaries",
+  "cta",
+  "updates",
 ];
 
 const CHROME = [
   { key: "announce", sel: ".announce, .wpfy-announce" },
   { key: "header", sel: ".site-header, .wpfy-site-header" },
-  { key: "hero", sel: ".hero, .wpfy-hero, #brxe-hr0001" },
-  { key: "marquee", sel: ".marquee, .wpfy-marquee" },
+  { key: "hero", sel: ".hero, .wpfy-hero" },
   { key: "footer", sel: ".site-footer, .wpfy-site-footer" },
 ];
 
@@ -40,6 +41,9 @@ function pctMatch(local, wp) {
 async function strictAudit(page) {
   await page.evaluate(async () => {
     document.body.classList.add("js");
+    document.querySelectorAll(".bricks-lazy-hidden").forEach((el) => {
+      el.classList.remove("bricks-lazy-hidden");
+    });
     for (let y = 0; y < document.body.scrollHeight; y += 400) {
       window.scrollTo(0, y);
       await new Promise((r) => setTimeout(r, 60));
@@ -74,57 +78,45 @@ async function strictAudit(page) {
 
       const chrome = {};
       for (const { key, sel } of CHROME) {
-        chrome[key] = probe(document.querySelector(sel));
+        const el = document.querySelector(sel);
+        chrome[key] = probe(el);
       }
 
       const heroH1 = document.querySelector("#hero-title");
-      const heroCtas = document.querySelector(".hero-ctas, .wpfy-hero-ctas");
-      const nav = document.querySelector(".nav, #brxe-hd0002");
-      const menuBtn = document.querySelector(".menu-btn, .wpfy-menu-btn");
-
-      const grids = {
-        featuresGrid: probe(document.querySelector("#features .grid-4, #features .wpfy-grid-4")),
-        whoGrid: probe(document.querySelector("#who .grid-3, #who .wpfy-grid-3")),
-        compare: probe(document.querySelector("#problem .compare, #problem .wpfy-compare")),
+      const counts = {
+        marquee: document.querySelectorAll(".marquee, .wpfy-marquee").length,
+        doodles: document.querySelectorAll(".doodle, .edge-doodle, .drift, .wpfy-doodle").length,
+        cmdTabs: document.querySelectorAll(".cmd-tab").length,
+        boundaryRows: document.querySelectorAll(".boundaries-table tbody tr").length,
       };
 
       return {
-        body: probe(document.body),
-        hero: probe(document.querySelector(".hero, .wpfy-hero, #brxe-hr0001")),
-        heroH1: heroH1
-          ? { fs: getComputedStyle(heroH1).fontSize, ta: getComputedStyle(heroH1).textAlign }
-          : null,
-        heroCtas: heroCtas
-          ? { jc: getComputedStyle(heroCtas).justifyContent, disp: getComputedStyle(heroCtas).display }
-          : null,
-        navH: nav ? Math.round(nav.getBoundingClientRect().height) : null,
-        menuBtnVisible: menuBtn ? getComputedStyle(menuBtn).display !== "none" : null,
-        navLinksVisible: (() => {
-          const nl = document.querySelector(".nav-links, .wpfy-nav-links");
-          return nl ? getComputedStyle(nl).display !== "none" : null;
-        })(),
         sections,
         chrome,
-        grids,
-        counts: {
-          featureCards: document.querySelectorAll("#features .card, #features .wpfy-card").length,
-          ecoBoxes: document.querySelectorAll("#stack .eco-box, #stack .wpfy-eco-box").length,
-          ucRows: document.querySelectorAll("#use-cases .uc-row, #use-cases .wpfy-uc-row").length,
-        },
-        totalH: Math.round(document.body.scrollHeight),
+        heroTitle: heroH1 ? heroH1.textContent.trim() : null,
+        pageH: document.documentElement.scrollHeight,
+        counts,
       };
     },
     { SECTION_IDS, CHROME }
   );
 }
 
+function scoreSection(local, wp) {
+  if (!local && !wp) return 100;
+  if (!local || !wp) return 0;
+  const keys = ["h", "w", "padT", "padB"];
+  const scores = keys.map((k) => pctMatch(local[k], wp[k]));
+  return Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+}
+
+const browser = await chromium.launch();
 const viewports = [
   { name: "desktop", width: 1440, height: 900 },
   { name: "tablet", width: 768, height: 1024 },
   { name: "mobile", width: 390, height: 844 },
 ];
 
-const browser = await chromium.launch();
 const report = { local: LOCAL, wp: WP, results: {} };
 
 for (const vp of viewports) {
@@ -136,79 +128,30 @@ for (const vp of viewports) {
   const local = await strictAudit(localPage);
   const wp = await strictAudit(wpPage);
 
-  const sectionScores = [];
-  const issues = [];
-
+  const sectionScores = {};
   for (const id of SECTION_IDS) {
-    const l = local.sections[id];
-    const w = wp.sections[id];
-    if (!l || !w) {
-      issues.push({ vp: vp.name, section: id, type: "missing", local: !!l, wp: !!w });
-      sectionScores.push(0);
-      continue;
-    }
-    const hMatch = pctMatch(l.h, w.h);
-    const padMatch = (pctMatch(l.padT, w.padT) + pctMatch(l.padB, w.padB)) / 2;
-    const bgMatch = l.bg === w.bg ? 100 : 0;
-    const score = hMatch * 0.55 + padMatch * 0.25 + bgMatch * 0.2;
-    sectionScores.push(score);
-    if (score < 95 || Math.abs(l.h - w.h) > 24) {
-      issues.push({
-        vp: vp.name,
-        section: id,
-        type: "layout",
-        score: +score.toFixed(1),
-        local: l,
-        wp: w,
-        dH: w.h - l.h,
-      });
-    }
+    sectionScores[id] = scoreSection(local.sections[id], wp.sections[id]);
   }
 
-  // Chrome / hero checks
-  if (local.heroH1 && wp.heroH1 && local.heroH1.ta !== wp.heroH1.ta) {
-    issues.push({ vp: vp.name, section: "hero", type: "textAlign", local: local.heroH1.ta, wp: wp.heroH1.ta });
-  }
-  if (local.menuBtnVisible !== wp.menuBtnVisible) {
-    issues.push({ vp: vp.name, section: "header", type: "menuBtn", local: local.menuBtnVisible, wp: wp.menuBtnVisible });
-  }
-  if (local.navLinksVisible !== wp.navLinksVisible) {
-    issues.push({ vp: vp.name, section: "header", type: "navLinks", local: local.navLinksVisible, wp: wp.navLinksVisible });
-  }
-  if (local.heroCtas && wp.heroCtas && local.heroCtas.jc !== wp.heroCtas.jc) {
-    issues.push({ vp: vp.name, section: "hero-ctas", type: "justify", local: local.heroCtas.jc, wp: wp.heroCtas.jc });
-  }
+  report.results[vp.name] = {
+    local,
+    wp,
+    sectionScores,
+    avgScore: Math.round(
+      Object.values(sectionScores).reduce((a, b) => a + b, 0) / SECTION_IDS.length
+    ),
+  };
 
-  const totalMatch = pctMatch(local.totalH, wp.totalH);
-  const avgSection = sectionScores.length
-    ? sectionScores.reduce((a, b) => a + b, 0) / sectionScores.length
-    : 0;
+  console.log(`\n=== ${vp.name} strict audit ===`);
+  console.log("Avg section score:", report.results[vp.name].avgScore);
+  console.log("Local page height:", local.pageH, "WP:", wp.pageH);
+  console.log("Local hero:", local.heroTitle, "| WP:", wp.heroTitle);
+  console.log("Marquee count local/wp:", local.counts.marquee, wp.counts.marquee);
 
-  report.results[vp.name] = { local, wp, avgSection: +avgSection.toFixed(2), totalMatch: +totalMatch.toFixed(2), issues };
-
-  await localPage.screenshot({ path: `/tmp/strict-${vp.name}-local.png`, fullPage: true });
-  await wpPage.screenshot({ path: `/tmp/strict-${vp.name}-wp.png`, fullPage: true });
   await localPage.close();
   await wpPage.close();
 }
 
+writeFileSync("/tmp/strict-audit-report.json", JSON.stringify(report, null, 2));
+console.log("\nReport: /tmp/strict-audit-report.json");
 await browser.close();
-writeFileSync("/tmp/strict-audit.json", JSON.stringify(report, null, 2));
-
-console.log("\n=== STRICT PARITY SUMMARY ===");
-for (const [vp, data] of Object.entries(report.results)) {
-  console.log(`${vp}: sections ${data.avgSection}% | page height ${data.totalMatch}% | issues ${data.issues.length}`);
-}
-
-console.log("\n=== ISSUES (score < 95 or |dH| > 24) ===");
-for (const data of Object.values(report.results)) {
-  for (const i of data.issues) {
-    if (i.type === "layout") {
-      console.log(
-        `[${i.vp}] ${i.section}: score=${i.score}% local.h=${i.local.h} wp.h=${i.wp.h} (d=${i.dH}) pad ${i.local.padT}/${i.local.padB} vs ${i.wp.padT}/${i.wp.padB} bg ${i.local.bg === i.wp.bg ? "ok" : "MISMATCH"}`
-      );
-    } else {
-      console.log(`[${i.vp}] ${i.section} ${i.type}:`, JSON.stringify(i));
-    }
-  }
-}

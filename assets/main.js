@@ -1,6 +1,4 @@
-/* WPFY launch site: reveals, hero terminal loop, copy, mobile nav.
-   All animation is transform/opacity; everything degrades statically
-   under prefers-reduced-motion or without JS. */
+/* WPFY marketing site — reveals, copy, command tabs, mobile nav, terminal loop */
 (function () {
   "use strict";
 
@@ -22,52 +20,74 @@
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
     revealEls.forEach(function (el) { io.observe(el); });
+    document.querySelectorAll(".hero .reveal, .announce + header + main .reveal").forEach(function (el) {
+      el.classList.add("in");
+    });
   }
 
   /* ---------- copy buttons ---------- */
+  var live = document.createElement("div");
+  live.setAttribute("aria-live", "polite");
+  live.className = "sr-only";
+  document.body.appendChild(live);
+
   document.querySelectorAll(".copy-btn").forEach(function (btn) {
     var label = btn.querySelector("span");
     btn.addEventListener("click", function () {
       if (!navigator.clipboard || !btn.dataset.copy) { return; }
       navigator.clipboard.writeText(btn.dataset.copy).then(function () {
         if (label) { label.textContent = "copied"; }
-        setTimeout(function () { if (label) { label.textContent = "copy"; } }, 1600);
+        live.textContent = "Command copied to clipboard";
+        setTimeout(function () {
+          if (label) { label.textContent = "copy"; }
+          live.textContent = "";
+        }, 1600);
       }).catch(function () {
         if (label) { label.textContent = "failed"; }
-        setTimeout(function () { if (label) { label.textContent = "copy"; } }, 1600);
+        live.textContent = "Copy failed";
+        setTimeout(function () {
+          if (label) { label.textContent = "copy"; }
+          live.textContent = "";
+        }, 1600);
       });
     });
   });
 
-  /* ---------- command chips: click to copy ---------- */
-  var CHIP_ICO = '<svg class="cmd-chip-ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g class="ico-copy"><rect x="5" y="5" width="8" height="9" rx="1"/><path d="M11 5V3.5A1.5 1.5 0 0 0 9.5 2h-5A1.5 1.5 0 0 0 3 3.5v7A1.5 1.5 0 0 0 4.5 12H5"/></g><path class="ico-check" d="M3.5 8.4l3 3 6-6.6"/></svg>';
-  document.querySelectorAll(".cmd-chip[data-copy]").forEach(function (chip) {
-    chip.insertAdjacentHTML("beforeend", CHIP_ICO);
-    var baseLabel = "Copy command: " + chip.dataset.copy;
-    chip.setAttribute("aria-label", baseLabel);
-    chip.setAttribute("title", "Copy to clipboard");
-    var timer;
-    // success/failure changes the visual state AND the accessible name, so
-    // screen-reader users get the same confirmation; both restore the label.
-    var restore = function () {
-      chip.classList.remove("copied");
-      chip.setAttribute("aria-label", baseLabel);
-    };
-    chip.addEventListener("click", function () {
-      if (!navigator.clipboard) { return; }
-      navigator.clipboard.writeText(chip.dataset.copy).then(function () {
-        chip.classList.add("copied");
-        chip.setAttribute("aria-label", "Copied: " + chip.dataset.copy);
-        clearTimeout(timer);
-        timer = setTimeout(restore, 1500);
-      }).catch(function () {
-        chip.classList.remove("copied");
-        chip.setAttribute("aria-label", "Copy failed");
-        clearTimeout(timer);
-        timer = setTimeout(restore, 1500);
+  /* ---------- command tabs ---------- */
+  var tablist = document.querySelector(".cmd-tabs");
+  if (tablist) {
+    var tabs = tablist.querySelectorAll('[role="tab"]');
+    var panels = document.querySelectorAll(".cmd-panel[role='tabpanel']");
+
+    function activateTab(tab) {
+      tabs.forEach(function (t) {
+        var selected = t === tab;
+        t.setAttribute("aria-selected", selected ? "true" : "false");
+        t.tabIndex = selected ? 0 : -1;
+      });
+      panels.forEach(function (panel) {
+        var active = panel.id === tab.getAttribute("aria-controls");
+        panel.classList.toggle("is-active", active);
+        panel.hidden = !active;
+      });
+    }
+
+    tabs.forEach(function (tab, index) {
+      tab.tabIndex = tab.getAttribute("aria-selected") === "true" ? 0 : -1;
+      tab.addEventListener("click", function () { activateTab(tab); });
+      tab.addEventListener("keydown", function (e) {
+        var next = index;
+        if (e.key === "ArrowRight") { next = (index + 1) % tabs.length; }
+        else if (e.key === "ArrowLeft") { next = (index - 1 + tabs.length) % tabs.length; }
+        else if (e.key === "Home") { next = 0; }
+        else if (e.key === "End") { next = tabs.length - 1; }
+        else { return; }
+        e.preventDefault();
+        activateTab(tabs[next]);
+        tabs[next].focus();
       });
     });
-  });
+  }
 
   /* ---------- mobile nav ---------- */
   var menuBtn = document.querySelector(".menu-btn");
@@ -83,126 +103,12 @@
         menuBtn.setAttribute("aria-expanded", "false");
       });
     });
-  }
-
-  /* ---------- ecosystem pipes ---------- */
-  // Colored pipes snaking from each box into the center node. Drawn from the
-  // measured layout so they hold at any width; the stacked (<=1024px) layout
-  // hides them. Coordinates are relative to .eco-diagram, so the reveal
-  // translate doesn't skew them.
-  var ecoDiagram = document.querySelector(".eco-diagram");
-  var ecoPipesSvg = document.querySelector(".eco-pipes");
-  var ecoNode = document.querySelector(".eco-node");
-  if (ecoDiagram && ecoPipesSvg && ecoNode) {
-    var SVG_NS = "http://www.w3.org/2000/svg";
-    var PIPE_COLORS = {
-      "box-blue": "#6fc2ff",
-      "box-teal": "#53dbc9",
-      "box-yellow": "#ffde00",
-      "box-red": "#f2655a",
-      "box-cream": "#c9c2ba"
-    };
-    var stackedQuery = window.matchMedia("(max-width: 1024px)");
-    var pipeByBox = new Map();
-
-    var pipeColor = function (box) {
-      for (var key in PIPE_COLORS) {
-        if (box.classList.contains(key)) { return PIPE_COLORS[key]; }
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && navLinks.classList.contains("open")) {
+        navLinks.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.focus();
       }
-      return PIPE_COLORS["box-cream"];
-    };
-
-    // orthogonal polyline -> path with rounded corners
-    var roundedPath = function (pts, radius) {
-      var d = "M" + pts[0][0] + " " + pts[0][1];
-      for (var i = 1; i < pts.length - 1; i++) {
-        var prev = pts[i - 1], cur = pts[i], next = pts[i + 1];
-        var inLen = Math.hypot(cur[0] - prev[0], cur[1] - prev[1]);
-        var outLen = Math.hypot(next[0] - cur[0], next[1] - cur[1]);
-        var r = Math.min(radius, inLen / 2, outLen / 2);
-        if (r < 1) { d += " L" + cur[0] + " " + cur[1]; continue; }
-        d += " L" + (cur[0] - ((cur[0] - prev[0]) / inLen) * r) +
-             " " + (cur[1] - ((cur[1] - prev[1]) / inLen) * r) +
-             " Q" + cur[0] + " " + cur[1] +
-             " " + (cur[0] + ((next[0] - cur[0]) / outLen) * r) +
-             " " + (cur[1] + ((next[1] - cur[1]) / outLen) * r);
-      }
-      d += " L" + pts[pts.length - 1][0] + " " + pts[pts.length - 1][1];
-      return d;
-    };
-
-    var drawEcoPipes = function () {
-      ecoPipesSvg.textContent = "";
-      pipeByBox.clear();
-      if (stackedQuery.matches) { return; }
-      var base = ecoDiagram.getBoundingClientRect();
-      var node = ecoNode.getBoundingClientRect();
-      var nodeL = node.left - base.left;
-      var nodeR = node.right - base.left;
-      var nodeT = node.top - base.top;
-
-      [{ sel: ".eco-col-l .eco-box", dir: 1 }, { sel: ".eco-col-r .eco-box", dir: -1 }]
-        .forEach(function (side) {
-          var boxes = ecoDiagram.querySelectorAll(side.sel);
-          Array.prototype.forEach.call(boxes, function (box, i) {
-            var b = box.getBoundingClientRect();
-            var sx = (side.dir === 1 ? b.right : b.left) - base.left;
-            var sy = b.top - base.top + b.height / 2;
-            var ex = side.dir === 1 ? nodeL : nodeR;
-            // bundle entries on the node edge: top box high, bottom box low
-            var ey = nodeT + node.height * (0.3 + 0.2 * i);
-            // parallel vertical corridors in the column gap
-            var cx = sx + side.dir * (i === 0 ? 22 : i === 1 ? 30 : 40);
-            var path = document.createElementNS(SVG_NS, "path");
-            path.setAttribute("class", "eco-pipe");
-            path.setAttribute("stroke", pipeColor(box));
-            path.setAttribute("d", roundedPath([[sx, sy], [cx, sy], [cx, ey], [ex, ey]], 14));
-            ecoPipesSvg.appendChild(path);
-            pipeByBox.set(box, path);
-          });
-        });
-    };
-
-    Array.prototype.forEach.call(ecoDiagram.querySelectorAll(".eco-box"), function (box) {
-      box.addEventListener("mouseenter", function () {
-        var p = pipeByBox.get(box);
-        if (p) { p.classList.add("hot"); }
-      });
-      box.addEventListener("mouseleave", function () {
-        var p = pipeByBox.get(box);
-        if (p) { p.classList.remove("hot"); }
-      });
-    });
-
-    var pipeTimer;
-    window.addEventListener("resize", function () {
-      clearTimeout(pipeTimer);
-      pipeTimer = setTimeout(drawEcoPipes, 150);
-    });
-    window.addEventListener("load", drawEcoPipes);
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(drawEcoPipes);
-    }
-    drawEcoPipes();
-  }
-
-  /* ---------- subscribe ribbon (placeholder: no backend wired yet) ---------- */
-  var subForm = document.querySelector(".sub-form[data-placeholder]");
-  var subStatus = document.querySelector(".sub-status");
-  var subPrivacy = document.getElementById("sub-privacy");
-  if (subForm && subStatus) {
-    subForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (subPrivacy && !subPrivacy.checked) {
-        subPrivacy.focus();
-        return;
-      }
-      if (!subForm.checkValidity()) {
-        if (subForm.reportValidity) { subForm.reportValidity(); }
-        return;
-      }
-      subForm.hidden = true;
-      subStatus.hidden = false;
     });
   }
 
@@ -225,13 +131,6 @@
   function applyConsent(choice) {
     document.documentElement.dataset.cookieAnalytics = choice.analytics ? "1" : "0";
     document.documentElement.dataset.cookieMarketing = choice.marketing ? "1" : "0";
-    if (choice.analytics) {
-      /* Load analytics only after consent — wire provider here when enabled. */
-      document.dispatchEvent(new CustomEvent("wpfy:consent-analytics", { detail: choice }));
-    }
-    if (choice.marketing) {
-      document.dispatchEvent(new CustomEvent("wpfy:consent-marketing", { detail: choice }));
-    }
   }
 
   var existingConsent = parseConsent(consentRaw);
@@ -262,7 +161,7 @@
           '<label><input type="checkbox" checked disabled> Strictly necessary (always on)</label>' +
           '<label><input type="checkbox" id="cookie-analytics"> Analytics</label>' +
           '<label><input type="checkbox" id="cookie-marketing"> Marketing &amp; affiliate</label>' +
-          '<button type="button" class="btn btn-ink" data-cookie-save style="margin-top:8px">Save preferences</button>' +
+          '<button type="button" class="btn btn-primary" data-cookie-save style="margin-top:8px">Save preferences</button>' +
         '</div>' +
       '</div>';
     document.body.appendChild(banner);
@@ -302,8 +201,6 @@
   });
 
   /* ---------- hero terminal loop ---------- */
-  // Two scenes: the installer run, then a site-create with SSL preflight.
-  // Static markup stays in place for reduced-motion / no-JS readers.
   var term = document.getElementById("hero-term");
   if (!term || reducedMotion || !("IntersectionObserver" in window)) { return; }
 
@@ -319,19 +216,25 @@
       ]
     },
     {
-      cmd: "wpfy site create example.com --wp -le",
+      cmd: "wpfy run example.com --wp",
       lines: [
-        '<span class="t-out"><span class="t-ok">✓</span> scaffold rendered        <span class="t-dim">compose.yaml · .env · isolated network</span></span>',
+        '<span class="t-out"><span class="t-ok">✓</span> scaffold rendered        <span class="t-dim">compose.yaml · private network</span></span>',
+        '<span class="t-out"><span class="t-ok">✓</span> wordpress provisioned    <span class="t-dim">site runtime started</span></span>',
+        '<span class="t-out"><span class="t-ok">✓</span> status                   <span class="t-dim">wpfy site status example.com</span></span>'
+      ]
+    },
+    {
+      cmd: "wpfy site ssl example.com --letsencrypt",
+      lines: [
         '<span class="t-out"><span class="t-ok">✓</span> ssl preflight passed     <span class="t-dim">DNS A → matches server public IP</span></span>',
-        '<span class="t-out"><span class="t-ok">✓</span> certificate issued       <span class="t-dim">Let’s Encrypt (ACME)</span></span>',
-        '<span class="t-out"><span class="t-ok">✓</span> wordpress provisioned    <span class="t-dim">https://example.com is live</span></span>'
+        '<span class="t-out"><span class="t-ok">✓</span> certificate issued       <span class="t-dim">Let\'s Encrypt (ACME)</span></span>'
       ]
     }
   ];
 
-  var TYPE_MS = 26;        // per character
-  var LINE_MS = 340;       // between output lines
-  var SCENE_HOLD_MS = 4200;
+  var TYPE_MS = 22;
+  var LINE_MS = 320;
+  var SCENE_HOLD_MS = 3800;
 
   function el(html) {
     var span = document.createElement("span");
@@ -354,22 +257,12 @@
       if (pos < scene.cmd.length) {
         pos += 1;
         cmdSpan.textContent = scene.cmd.slice(0, pos);
-        setTimeout(typeChar, TYPE_MS + Math.random() * 24);
+        setTimeout(typeChar, TYPE_MS + Math.random() * 20);
       } else {
-        setTimeout(function () { printLine(0); }, 420);
+        setTimeout(function () { printLine(0); }, 400);
       }
     }
 
-    function printLine(n) {
-      if (n < scene.lines.length) {
-        term.insertBefore(el(scene.lines[n]), caretHolder());
-        setTimeout(function () { printLine(n + 1); }, LINE_MS);
-      } else {
-        setTimeout(function () { playScene(i + 1); }, SCENE_HOLD_MS);
-      }
-    }
-
-    // keep the caret parked on its own trailing line while output prints
     var parked = null;
     function caretHolder() {
       if (!parked) {
@@ -381,10 +274,18 @@
       return parked;
     }
 
+    function printLine(n) {
+      if (n < scene.lines.length) {
+        term.insertBefore(el(scene.lines[n]), caretHolder());
+        setTimeout(function () { printLine(n + 1); }, LINE_MS);
+      } else {
+        setTimeout(function () { playScene(i + 1); }, SCENE_HOLD_MS);
+      }
+    }
+
     typeChar();
   }
 
-  // hand off from the static markup once the terminal scrolls into view
   var started = false;
   var startIO = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
@@ -394,6 +295,6 @@
         setTimeout(function () { playScene(0); }, 500);
       }
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.35 });
   startIO.observe(term);
 })();
